@@ -62,3 +62,25 @@ a {
 }
 
 div.inline { float:left; }
+
+/* Team Members */
+.inline {
+    display: inline-block;
+    text-align: center;
+    margin: 15px;
+}
+
+/* Ensures all images are the same size as Zaayan’s image */
+.inline img {
+    width: 200px; /* Matches Zaayan's image */
+    height: 200px; /* Maintain aspect ratio */
+    object-fit: cover; /* Prevents distortion */
+    border-radius: 10px;
+    border: 3px solid #01ff70;
+    transition: transform 0.3s ease; /* Adds smooth hover effect */
+}
+
+/* Optional hover effect for better UI */
+.inline img:hover {
+    transform: scale(1.03);
+}
