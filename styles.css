@@ -63,6 +63,14 @@ a {
 
 div.inline { float:left; }
 
+.image_1{
+
+    width: 200px;
+    height: auto;
+
+    
+}
+
 /* Team Members */
 .inline {
     display: inline-block;
@@ -84,3 +92,4 @@ div.inline { float:left; }
 .inline img:hover {
     transform: scale(1.03);
 }
+
