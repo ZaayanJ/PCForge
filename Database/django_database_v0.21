@@ -1,3 +1,5 @@
+# prompt: make a product model with attributes: id (ten-digit positive integer), price (six-digit positive float with two digits past the decimal point)
+
 from django.db import models
 from django.core.validators import MinValueValidator # Import MinValueValidator
 
@@ -7,7 +9,7 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
 
-class Images(models.Model):
+class Image(models.Model):
     prod_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     image = models.CharField(max_length=255)
 
@@ -37,21 +39,21 @@ class GPU(models.Model):
     prod_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     chipset = models.CharField(max_length=255)
     memoryType = models.CharField(max_length=255)
-    memoryGB = models.DecimalField(max_digits=6, decimal_places=2, validators=[MinValueValidator(0)]))
+    memoryGB = models.DecimalField(max_digits=6, decimal_places=2, validators=[MinValueValidator(0)])
     baseClockSpeedGHz = models.DecimalField(max_digits=6, decimal_places=2, validators=[MinValueValidator(0)])
     boostClockSpeedGHz = models.DecimalField(max_digits=6, decimal_places=2, validators=[MinValueValidator(0)])
-    lengthMM = models.DecimalField(max_digits=6, decimal_places=2, validators=[MinValueValidator(0)]))
-    widthMM = models.DecimalField(max_digits=6, decimal_places=2, validators=[MinValueValidator(0)]))
+    lengthMM = models.DecimalField(max_digits=6, decimal_places=2, validators=[MinValueValidator(0)])
+    widthMM = models.DecimalField(max_digits=6, decimal_places=2, validators=[MinValueValidator(0)])
     gpuChip = models.CharField(max_length=255)
     vramType = models.CharField(max_length=255)
-    vramGB = models.DecimalField(max_digits=6, decimal_places=2, validators=[MinValueValidator(0)]))
+    vramGB = models.DecimalField(max_digits=6, decimal_places=2, validators=[MinValueValidator(0)])
 
 class Motherboard(models.Model):
     prod_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     socket = models.CharField(max_length=255)
     chipset = models.CharField(max_length=255)
     formFactor = models.CharField(max_length=255)
-    maxMemoryGB = models.DecimalField(max_digits=6, decimal_places=2, validators=[MinValueValidator(0)]))
+    maxMemoryGB = models.DecimalField(max_digits=6, decimal_places=2, validators=[MinValueValidator(0)])
     maxMemorySlots = models.PositiveIntegerField()
     printedCircuitBoard = models.CharField(max_length=255)
     voltageRegulator = models.CharField(max_length=255)
