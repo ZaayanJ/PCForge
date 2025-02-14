@@ -18,11 +18,11 @@ create table CPUs ( -- also need to add image
     
     -- CPU specific components
     coreCount decimal(2) not null, -- 00 to 99 count
-    performanceGHz decimal(1, 1) not null, -- 0.0 to 9.9 GHz
-    performanceBoostGHz decimal(1, 1) not null, -- 0.0 to 9.9 GHz
+    performanceGHz decimal(2, 1) not null, -- 0.0 to 9.9 GHz
+    performanceBoostGHz decimal(2, 1) not null, -- 0.0 to 9.9 GHz
     microArch varChar(30) not null, -- microarchitecture, 30 char limit
     integratedGraphics varChar(30), -- 30 char limit, can be null
-    priceUSD decimal(4, 2) not null, -- 0000.00 to 9999.99 dollars
+    priceUSD decimal(6, 2) not null, -- 0000.00 to 9999.99 dollars
     
     -- CPU components/ingredients
     silicon varChar(50) not null,
@@ -38,9 +38,9 @@ create table CPUCoolers ( -- also need to add image
     description text(200), -- 200 char limit
     
     fanRPM decimal(4) not null, -- 0000 to 9999 RPM, maybe add ranged RPM? (eg. 500-1200 RPM)
-    noiseLevel decimal(2, 2), -- 00.00 to 99.99 dB, can be null?
+    noiseLevel decimal(4, 2), -- 00.00 to 99.99 dB, can be null?
     radiatorSize decimal(3), -- 000 to 999 mm, can be null?
-    priceUSD decimal(4, 2) not null, -- 0000.00 to 9999.99 dollars
+    priceUSD decimal(6, 2) not null, -- 0000.00 to 9999.99 dollars
     
     check (cpuCoolerID >= 0 and fanRPM >= 0 and noiseLevel >= 0 and radiatorSize >= 0 and priceUSD >= 0)
 );
@@ -59,7 +59,7 @@ create table Motherboards ( -- also need to add image
     maxMemory decimal(3) not null,
     memorySlots decimal(1) not null,
     pciSlots decimal(1) not null,
-    priceUSD decimal(4, 2) not null, -- 0000.00 to 9999.99 dollars
+    priceUSD decimal(6, 2) not null, -- 0000.00 to 9999.99 dollars
     
     -- Motherboard components/ingredients
     pcb varChar(50) not null, -- Printed Circuit Board
@@ -81,7 +81,7 @@ create table Memories ( -- also need to add image
     speed decimal(4) not null,
     casLatency decimal(2) not null,
     modules decimal(1) not null,
-    priceUSD decimal(4, 2) not null, -- 0000.00 to 9999.99 dollars
+    priceUSD decimal(6, 2) not null, -- 0000.00 to 9999.99 dollars
     
     -- Memory components/ingredients
     pcb varChar(50) not null, -- Printed Circuit Board
@@ -98,7 +98,7 @@ create table Storages ( -- also need to add image
     description text(200), -- 200 char limit
     
     -- more stuff
-    priceUSD decimal(4, 2) not null, -- 0000.00 to 9999.99 dollars
+    priceUSD decimal(6, 2) not null, -- 0000.00 to 9999.99 dollars
     
     check (storageID >= 0 and priceUSD >= 0)
 );
@@ -117,7 +117,7 @@ create table Graphics ( -- also need to add image
     boostClock decimal(4),
     length decimal(3) not null,
     tdp decimal(3) not null,
-    priceUSD decimal(4, 2) not null, -- 0000.00 to 9999.99 dollars
+    priceUSD decimal(6, 2) not null, -- 0000.00 to 9999.99 dollars
     
     -- Graphics card components/ingredients
     gpu varChar(50) not null, -- GPU Chip
@@ -133,7 +133,7 @@ create table PCCases ( -- also need to add image
     description text(200), -- 200 char limit
     
     -- more stuff
-    priceUSD decimal(4, 2) not null, -- 0000.00 to 9999.99 dollars
+    priceUSD decimal(6, 2) not null, -- 0000.00 to 9999.99 dollars
     
     check (pcCaseID >= 0 and priceUSD >= 0)
 );
@@ -144,7 +144,7 @@ create table PSUs ( -- also need to add image
     description text(200), -- 200 char limit
     
     -- more stuff
-    priceUSD decimal(4, 2) not null, -- 0000.00 to 9999.99 dollars
+    priceUSD decimal(6, 2) not null, -- 0000.00 to 9999.99 dollars
     
     check (psuID >= 0 and priceUSD >= 0)
 );
@@ -157,7 +157,7 @@ create table Monitors ( -- also need to add image
     description text(200), -- 200 char limit
     
     -- more stuff
-    priceUSD decimal(4, 2) not null, -- 0000.00 to 9999.99 dollars
+    priceUSD decimal(6, 2) not null, -- 0000.00 to 9999.99 dollars
     
     check (monitorID >= 0 and priceUSD >= 0)
 );
