@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PCForge</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'shop/styles/output.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <style>
+            .bg-custom {
+                background-image: url("{% static 'shop/images/background-img.png' %}");
+            }
+        </style>
+    </head>
+    <!-- <body>
+        <h1>Welcome to PCForge Webpage</h1>
+        {% for product in products %}
+        <div>{{product.name}}, {{product.price}}</div>
+        {% endfor %}
+    </body> -->
+    <body class="bg-custom text-white h-screen bg-cover bg-center bg-repeat">
+
+        <!-- Promo Banner -->
+        <div id="promo-banner" href="#featured-product" class="fixed top-0 left-0 w-full bg-gradient-to-r from-[#ff6347] to-[#ffd700] text-white text-center p-3 shadow-lg flex items-center justify-between z-50">
+            <span class="mx-auto text-lg font-semibold"><a href="#featured-product">🔥 Limited Time Offer! Get 20% off on our featured products! Use Code: <strong>SAVE20</strong> 🔥</a></span>
+            <button id="close-banner" class="text-white text-xl font-bold px-4">&times;</button>
+        </div>
+    
+        <header id="header" class="bg-black fixed w-full top-0 z-50 border-b border-[#01ff70] p-4 top-12 left-0 z-40 shadow-md">
+            <div class="max-w-7xl mx-auto flex justify-between items-center relative">
+                <div class="flex items-center gap-2">
+                    <img src="{% static 'shop/images/logo2.png' %}" alt="logo" class="w-12 h-12">
+                    <a href="{% url 'index' %}" class="text-[#01ff70] text-xl font-['Blowbrush']" style="font-family: 'Press Start 2P', serif; font-weight: 200;">PCForge</a>
+                </div>
+                <nav>
+                    <ul class="flex gap-8">
+                        <li><a href="{% url 'catalog' %}" class="hover:text-[#01ff70] font-mono">Products</a></li>
+                        <li><a href="{% url 'about-us' %}" class="hover:text-[#01ff70] font-mono">About Us</a></li>
+                        <li><a href="contact.html" class="hover:text-[#01ff70] font-mono">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="flex gap-4">
+                    <a href="login.html" class="border-2 border-[#01ff70] text-[#01ff70] px-4 py-2 rounded hover:bg-[#01ff70] hover:text-black">Login</a>
+                    <a href="{% url 'shoppingcart' %}" class="bg-[#01ff70] text-black px-4 py-2 rounded flex items-center gap-2 hover:bg-green-500">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM20 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        Cart
+                    </a>
+                </div>
+            </div>
+        </header>
+        
+        <main class="mt-20 max-w-6xl mx-auto p-6">
+            <section class="flex gap-75 items-center mb-12">
+                <div class="flex-1">
+                    <h1 class="text-4xl font-bold mb-4">Build Your Dream PC</h1>
+                    <p class="text-gray-400 mb-6">
+                        PCForge is your one-stop shop for premium PC components. 
+                        From high-performance processors to powerful graphics cards, 
+                        we've got everything you need to forge the perfect custom PC.
+                    </p>
+                    <a href="{% url 'catalog' %}" class="bg-[#01ff70] text-black px-6 py-3 rounded inline-block hover:bg-green-500">Browse Products</a>
+                </div>
+                <div class="flex-1 text-right">
+                    <img src="{% static 'shop/images/pc-model01.png' %}" alt="Gaming PC" class="w-100 h-100 shadow-md rounded-lg border border-[#01ff70]">
+                </div>
+            </section>
+    
+            <section id="featured-product" class="bg-[#2a2a2a] p-6 rounded-lg shadow-md border border-[#01ff70] mb-12">
+                <h2 class="text-2xl font-bold mb-4">Featured Product</h2>
+                <div class="flex gap-8 items-center">
+                    <img src="{% static 'shop/images/RTX 4070 ti.png' %}" alt="RTX 4070 Ti" class="max-w-xs border border-gray-700">
+                    <div>
+                        {% for product in products %}
+                        <h3 class="text-xl font-semibold">
+                            {{product.name}}
+                        </h3>
+                        <p class="text-gray-400 my-4">
+                            {{product.description}}
+                        </p>
+                        {% endfor %}
+                        <p class="text-[#01ff70] text-xl font-bold">$799.99</p>
+                        <a href="products.html" class="bg-[#01ff70] text-black px-6 py-3 rounded inline-block mt-4 hover:bg-green-500">View Details</a>
+                    </div>
+                </div>
+            </section>
+    
+            <section class="bg-[#2a2a2a] p-6 rounded-lg shadow-md border border-[#01ff70]">
+                <h2 class="text-2xl font-bold mb-4">Why Choose PCForge?</h2>
+                <p class="text-gray-400 leading-relaxed">
+                    At PCForge, we understand that building a PC is more than just 
+                    assembling parts - it's about creating a personal masterpiece. 
+                    We carefully curate our selection of components to ensure you get 
+                    the best performance, reliability, and value. Whether you're a 
+                    gaming enthusiast, content creator, or professional, we have the 
+                    perfect components to help you forge your ideal PC.
+                </p>
+            </section>
+        </main>
+    
+        <footer class="bg-[#1a1a1a] text-white pt-5">
+            <div class="max-w-6xl mx-auto px-6 md:px-12">
+                <!-- Divider -->
+                <div class="border-t border-gray-700 my-6"></div>
+        
+                <!-- Copyright and Legal Links -->
+                <div class="flex flex-col md:flex-row items-center justify-between text-gray-400 text-sm">
+                    <p>&copy; 2025 PCForge. All rights reserved.</p>
+                    <div class="flex space-x-4 mt-3 md:mt-0">
+                        <a href="#" class="hover:text-white">Privacy Policy</a>
+                        <a href="#" class="hover:text-white">Terms of Service</a>
+                        <a href="#" class="hover:text-white">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    
+        <!-- Should be moved to javascript file when created -->
+        <script>
+            document.getElementById("close-banner").addEventListener("click", function () {
+                const promoBanner = document.getElementById("promo-banner");
+                const header = document.getElementById("header");
+    
+                // Hide promo banner
+                promoBanner.style.display = "none";
+    
+                // Move header up
+                header.style.top = "0";
+            });
+        </script>
+    </body>
+</html>

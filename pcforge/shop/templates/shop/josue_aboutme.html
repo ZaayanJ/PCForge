@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>About Me - Josue Serrano R.</title>
+    {% load static %}
+    <img class="bobby_img" src="{% static 'shop/images/josue-cover.jpg' %}" alt="Josue Serrano R." style="height: 250px; width: auto;"/>
+    <link rel="stylesheet" href="{% static 'shop/styles/josue_styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Josue Serrano R.</h1>
+        <p>Computer Science Student</p>
+    </header>
+    <nav>
+        <a href="{% url 'index' %}">Home</a>
+        <a href="#about">About Me </a>
+        <a href="#interests">Interests</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+
+    </nav>
+    <div class="container">
+        <section id="about" class="about">
+            <h2>About Me</h2>
+            <p>My name is Josue Serrano R. I am currently attending St. Edward's University where I am working towards my Bachelor of Computer Science. From a young age I've had a passion for technology and I knew I wanted to study Computer Science in college, in the beginning I just wanted to learn how to code but as I learn more of the different branches computer science offers, I would like to learn a bit about everything. A main course I will focus on is Software Engineering, I would like to learn how the industry functions in the real world to further prepare me for my career.</p>
+        </section>
+        <section id="interests" class="interests">
+            <h2>Interests</h2>
+            <h3>Snowboarding</h3>
+            <img class="bobby_sports_img" src="{% static 'shop/images/josue_snowboarding.PNG' %}" alt="Josue Serrano R."/>
+            <p>One of my favorit hobbies is snowboarding! I live in New Mexico where we get a lot of snow in the winter, so from a young age my dad taught me how to snowboard. Since then I have always had a passion for the sport. I have been snowboarding since I was 8 years old, but since I moved to Texas for school I've been struggling to revisit the mountains in winter.</p>
+
+            <h3>Weightlifting</h3>
+            <img class="bobby_cooking_img" src="https://blog.dartfish.com/wp-content/uploads/2019/09/victor-freitas-546919-unsplash_LOW.jpg"  alt="Barbell on floor">
+            <p>I also enjoy weightlifting, I try to go to the gym four times a week. While there is days were I dont feel like going, I believe in following a routine that makes me feel healthy and keeps me focused throughout the week. For someone who's career requires them to look at a screen most of the time, having time to be active is really rewarding.</p>
+
+        </section>
+        <section id="skills" class="skills">
+            <h2>Skills</h2>
+            <h3>Technical Skills</h3>
+            <ul>
+                <li>Python</li>
+                <li>Java</li>
+                <li>Swift</li>
+                <li>SwiftUI</li>
+                <li>SQL</li>
+                <li>NASM Assembly</li>
+                <li>C</li>
+                <li>Java Script</li>
+                <li>Tkinter</li>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>C++</li>
+                <li>SQLite</li>
+            </ul>
+            <h3>Soft Skills</h3>
+            <ul>
+                <li>Team Leadership</li>
+                <li>Problem Solving</li>
+                <li>Resourceful</li>
+                <li>Critical Thinking</li>
+                <li>Orginized</li>
+                <li>Empowering</li>
+
+            </ul>
+        </section>
+        <section id="projects" class="projects">
+            <h2>Projects</h2>
+            <ul>
+                <li><strong>Food Truck Website<br/></strong>Developed and designed a user-friendly food truck website that allows customer ordering. The site includes an interactive home page where users can input their name and phone number for easy ordering. After inputting their information, users are directed to a detailed menu screen, where they can browse and add food items to their order. An order ticket on the right side of the menu keeps track of selected items and quantities in real-time. After finalizing their order, customers can submit their selections, which will be stored in a database. This allows users to view their order history when revisiting the site.</li>
+                <li><strong>To-Do List Location App<br/></strong>Developed a to-do list app that supports multiple users, designing a database to manage user data exclusively and efficiently. The app allows users to create and manage multiple to-do lists, adding tasks with descriptions, location, and radius using a map interface friendly to the user. Tasks can be assigned to the user or to friends, with the added functionality of sending location-based notifications when the user enters a specific radius. Additionally, the app includes a messaging feature, adding communication between users. The app offers an interactive way to manage tasks while allowing collaboration with friends.</li>
+            </ul>
+        </section>
+        <section id="contact" class="contact">
+            <img class="bobby_img_2" src="{% static 'shop/images/josue_aboutme2.jpg' %}" alt="Josue Serrano R."/>
+            <h2>Contact</h2>
+            <p>Feel free to reach out to me!</p>
+            <p>Email: <a href="josue.ale.serrano@gmail.com">josue.ale.serrano@gmail.com</a></p>
+            <p>Handshake: <a href="https://app.joinhandshake.com/profiles/7jkht6" target="_blank">Handshake.com</a></p>
+            <p>GitHub: <a href="https://github.com/aleserrano1" target="_blank">aleserrano1</a></p>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2025 Josue Serrano R. All rights reserved.</p>
+    </footer>
+</body>
+</html>

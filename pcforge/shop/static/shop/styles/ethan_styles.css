@@ -1,0 +1,246 @@
+/* Global Styles */
+body {
+    background-color: #1a1a1a; /* Dark background */
+    color: #fff; /* White text */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.8;
+}
+
+/* Links */
+a {
+    color: #00ff00; /* Bright green for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #00cc00; /* Darker green on hover */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Header */
+header {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+/* Navigation */
+nav {
+    position: sticky;
+    top: 0;
+    background: #1a1a1a;
+    z-index: 1000;
+    padding: 0.5rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+nav a {
+    margin: 0 1rem;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #fff;
+}
+
+nav a:hover,
+nav a.active {
+    color: #00ff00; /* Green for active link */
+}
+
+
+/* Section Spacing */
+section {
+    margin: 4rem auto; /* Consistent spacing between sections */
+    padding: 2rem;
+    max-width: 800px;
+    background: #222; /* Slightly lighter dark background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Section Headings */
+h2 {
+    color: #00ff00; /* Bright green */
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+
+/* About Section */
+.about {
+    display: flex;
+    flex-direction: column; /* Align content vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    text-align: center; /* Center text */
+    gap: 1.5rem; /* Add space between elements */
+    background: #333; /* Ensure the background remains visible */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 6rem auto; /* Center the section horizontally on the page */
+    max-width: 800px; /* Optional: Limit the width for better readability */
+}
+
+.ethan_image1 {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+.ethan_image2 {
+
+    width: 250px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+}
+
+.ethan_image3 {
+
+    width: 250px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+}
+
+.ethan_image4 {
+
+    width: 250px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+}
+
+.about div {
+    max-width: 70%;
+}
+
+/* Interests Section */
+.interests {
+    text-align: center;
+}
+
+.interests img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #00ff00; /* Green border */
+    margin: 1rem auto;
+}
+
+
+/* Skills Section */
+.skills ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    padding: 0;
+    list-style: none;
+}
+
+.skills li {
+    background: #333;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.skills li:hover {
+    transform: scale(1.1);
+}
+
+/* Contact Section */
+.contact {
+    text-align: center;
+}
+
+.contact p {
+    margin: 0.5rem 0;
+}
+
+.contact a {
+    color: #007BFF;
+    font-weight: bold;
+}
+
+.homepage {
+
+    text-align: center;
+
+}
+
+.homepage p {
+
+    margin: 0.5rem 0;
+
+}
+
+.homepage a {
+
+    color: #007BFF;
+    font-weight: bold;
+
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 1.5rem 0;
+    background: #333;
+    color: #fff;
+    margin-top: 2rem;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about div {
+        max-width: 100%;
+    }
+
+    .skills ul, .projects ul {
+        grid-template-columns: 1fr;
+    }
+}
