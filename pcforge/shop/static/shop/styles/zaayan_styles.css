@@ -1,0 +1,262 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Global Styles */
+body {
+    background-color: #1a1a1a; /* Dark background */
+    color: #fff; /* White text */
+    font-family: 'Poppins', sans-serif; /* Updated font */
+    margin: 0;
+    padding: 0;
+    line-height: 1.8;
+}
+
+/* Links */
+a {
+    color: #00ff00; /* Bright green for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #00cc00; /* Darker green on hover */
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Header */
+header {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1.8rem 0; /* Slightly larger for better spacing */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem; /* Adds spacing below the header */
+}
+
+/* Increased Header Font Sizes */
+header h1 {
+    font-size: 2.8rem; /* Slightly bigger */
+    margin: 0;
+    font-weight: 600; /* Bolder text */
+}
+
+header p {
+    font-size: 1.3rem;
+    margin-top: 0.5rem;
+}
+
+/* Navigation */
+nav {
+    position: sticky;
+    top: 0;
+    background: #1a1a1a;
+    z-index: 1000;
+    padding: 0.6rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+nav a {
+    margin: 0 1.2rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+nav a:hover,
+nav a.active {
+    color: #00ff00; /* Green for active link */
+}
+
+/* Section Styling */
+section {
+    margin: 5rem auto; /* More spacing between sections */
+    padding: 2rem;
+    max-width: 800px;
+    background: #222;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Increased Heading Sizes */
+h2 {
+    color: #00ff00; /* Bright green */
+    font-size: 2.2rem; /* Increased size */
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+h3 {
+    color: #00ff00;
+    font-size: 1.8rem; /* Slightly bigger */
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+/* About Section */
+.about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1.5rem;
+    background: #333;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 7rem auto; /* Increased margin for better spacing */
+    max-width: 800px;
+}
+
+/* Image Styling */
+.zaayan_img, .zaayan_img_2, .gym_img, .rivals_img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 10px;
+    border: 3px solid #00ff00;
+    transition: transform 0.3s ease;
+}
+
+.zaayan_img:hover, .zaayan_img_2:hover, .gym_img:hover, .rivals_img:hover {
+    transform: scale(1.03);
+}
+
+/* Adjusted Spacing for Profile Images */
+.zaayan_img {
+    width: 200px;
+    margin-top: 2rem; /* Ensures space from header */
+    display: block;
+}
+
+.zaayan_img_2 {
+    width: 320px; /* Increased size */
+}
+
+/* Specific Image Sizing */
+.gym_img {
+    width: 60%; /* Slightly smaller */
+    max-width: 350px; /* Keeps it proportional */
+    height: auto;
+    margin-top: 1rem;
+    border-radius: 10px;
+}
+
+.rivals_img {
+    width: 80%;
+    max-width: 500px;
+    height: auto;
+    margin-top: 1rem;
+    border-radius: 10px;
+}
+
+/* Interests Section */
+.interests {
+    text-align: center;
+}
+
+/* Skills Section */
+.skills ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    padding: 0;
+    list-style: none;
+}
+
+.skills li {
+    background: #333;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.skills li:hover {
+    transform: scale(1.1);
+}
+
+/* Projects Section */
+.projects ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.projects h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2.2rem;
+    font-weight: bold;
+}
+
+.projects li {
+    padding: 1.5rem;
+    border-radius: 8px;
+    background: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.projects li:hover {
+    transform: translateY(-5px);
+}
+
+/* Contact Section */
+.contact {
+    text-align: center;
+}
+
+.contact p {
+    margin: 0.5rem 0;
+}
+
+.contact a {
+    color: #007BFF;
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1.5rem 0;
+    background: #333;
+    color: #fff;
+    margin-top: 2rem;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about div {
+        max-width: 100%;
+    }
+
+    .skills ul, .projects ul {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PCForge - About Us</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'shop/styles/output.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <style>
+            @keyframes textColorChange {
+                from { color: #01ff70; }
+                to { color: #ff6347; }
+            }
+            @keyframes bgColorChange {
+                from { background-color: #01ff70; }
+                to { background-color: #ff6347; }
+            }
+            @keyframes borderColorChange {
+                from { border-color: #01ff70; }
+                to { border-color: #ff6347; }
+            }
+            .changeToRed-text {
+                animation: textColorChange 3s ease-in-out forwards;
+            }
+            .changeToRed-bg {
+                animation: bgColorChange 3s ease-in-out forwards;
+            }
+            .changeToRed-border {
+                animation: borderColorChange 3s ease-in-out forwards;
+            }
+            .changeToRed-bgBorder {
+                animation: textColorChange 3s ease-in-out forwards,
+                        borderColorChange 3s ease-in-out forwards;
+            }
+            .hover\:text-black:hover {
+                color: black !important;
+            }
+            .bg-custom {
+                background-image: url("{% static 'shop/images/background-img.png' %}");
+            }
+        </style>
+    </head>
+
+    <body class="bg-custom text-white h-screen bg-cover bg-center bg-repeat">
+        <header id="header" class="bg-black fixed w-full top-0 z-50 border-b border-[#01ff70] p-4 left-0 z-40 shadow-md changeToRed-border">
+            <div class="max-w-7xl mx-auto flex justify-between items-center relative">
+                <div class="flex items-center gap-2">
+                    <img src="{% static 'shop/images/logo2.png' %}" alt="logo" class="w-12 h-12">
+                    <a href="{% url 'index' %}" class="text-[#01ff70] text-xl font-['Blowbrush'] changeToRed-text" style="font-family: 'Press Start 2P', serif; font-weight: 200;">PCForge</a>
+                </div>
+                <nav>
+                    <ul class="flex gap-8">
+                        <li><a href="{% url 'catalog' %}" class="hover:text-[#ff6347] font-mono">Products</a></li>
+                        <li><a href="{% url 'about-us' %}" class="hover:text-[#ff6347] font-mono">About Us</a></li>
+                        <li><a href="contact.html" class="hover:text-[#ff6347] font-mono">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="flex gap-4">
+                    <a href="login.html" class="border-2 border-[#01ff70] text-[#01ff70] px-4 py-2 rounded hover:bg-[#ff6347] hover:text-black changeToRed-bgBorder">Login</a>
+                    <a href="{% url 'shoppingcart' %}" class="bg-[#01ff70] text-black px-4 py-2 rounded flex items-center gap-2 hover:bg-green-500 changeToRed-bg">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM20 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        Cart
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <main class="mt-20 max-w-6xl mx-auto p-6">
+            <section class="flex flex-col items-center py-10">
+                <h1 class="text-5xl font-bold mb-4 text-[#01ff70] transition-colors duration-3000 animate-text changeToRed-text">Meet The Team at</h1>
+                <h1 class="text-5xl font-bold mb-4 text-[#01ff70] transition-colors duration-3000 animate-text changeToRed-text">PC Forge</h1>
+            </section>
+            <section class="flex space-x-6">
+                <a href="{% url 'bobby' %}" class="group">
+                    <div class="w-50 h-50 bg-white rounded-lg shadow-md overflow-hidden flex flex-col items-center border-2 border-[#01ff70] changeToRed-border">
+                        <img src="{% static 'shop/images/bobby-cover.PNG' %}" alt="Bobby" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <p class="text-center text-lg font-semibold py-2">Bobby Picasio</p>
+                </a>
+                <a href="{% url 'zaayan' %}" class="group">
+                    <div class="w-50 h-50 bg-white rounded-lg shadow-md overflow-hidden flex flex-col items-center border-2 border-[#01ff70] changeToRed-border">
+                        <img src="{% static 'shop/images/zaayan-cover.jpg' %}" alt="Bobby" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <p class="text-center text-lg font-semibold py-2">Zaayan Javed</p>
+                </a>
+                <a href="{% url 'josue' %}" class="group">
+                    <div class="w-50 h-50 bg-white rounded-lg shadow-md overflow-hidden flex flex-col items-center border-2 border-[#01ff70] changeToRed-border">
+                        <img src="{% static 'shop/images/josue-cover.jpg' %}" alt="Bobby" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <p class="text-center text-lg font-semibold py-2">Josue Serrano</p>
+                </a>
+                <a href="{% url 'evan' %}" class="group">
+                    <div class="w-50 h-50 bg-white rounded-lg shadow-md overflow-hidden flex flex-col items-center border-2 border-[#01ff70] changeToRed-border">
+                        <img src="{% static 'shop/images/evan-cover.jpg' %}" alt="Bobby" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <p class="text-center text-lg font-semibold py-2">Evan Ebert</p>
+                </a>
+                <a href="{% url 'ethan' %}" class="group">
+                    <div class="w-50 h-50 bg-white rounded-lg shadow-md overflow-hidden flex flex-col items-center border-2 border-[#01ff70] changeToRed-border">
+                        <img src="{% static 'shop/images/ethan-cover.jpg' %}" alt="Bobby" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <p class="text-center text-lg font-semibold py-2">Ethan Reynaga</p>
+                </a>
+            </section>
+            <section class="flex justify-center py-10">
+                <h1 class="text-2xl font-bold mb-4 text-[#01ff70] transition-colors duration-3000 animate-text changeToRed-text">Helping You Craft Your Perfect Build, One Click at a Time!</h1>
+            </section>
+        </main>
+
+        <footer class="bg-[#1a1a1a] text-white pt-5">
+            <div class="max-w-6xl mx-auto px-6 md:px-12">
+                <!-- Divider -->
+                <div class="border-t border-gray-700 my-6"></div>
+        
+                <!-- Copyright and Legal Links -->
+                <div class="flex flex-col md:flex-row items-center justify-between text-gray-400 text-sm">
+                    <p>&copy; 2025 PCForge. All rights reserved.</p>
+                    <div class="flex space-x-4 mt-3 md:mt-0">
+                        <a href="#" class="hover:text-white">Privacy Policy</a>
+                        <a href="#" class="hover:text-white">Terms of Service</a>
+                        <a href="#" class="hover:text-white">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
