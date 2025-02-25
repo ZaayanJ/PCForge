@@ -14,7 +14,7 @@ class Product(models.Model):
 
 class Image(models.Model):
     prod_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    image = models.CharField(max_length=255)
+    image = models.CharField(max_length=255, default="missing.png")
 
 class CPU(models.Model):
     prod_id = models.ForeignKey(Product, on_delete=models.CASCADE)
