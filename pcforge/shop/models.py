@@ -109,3 +109,23 @@ class Monitor(models.Model):
     panelType = models.CharField(max_length=255)  # IPS, TN, VA, OLED
     aspectRatio = models.CharField(max_length=255)  # 16:9, 21:9, etc.
     ports = models.CharField(max_length=255)  # HDMI, DisplayPort, USB-C, etc.
+
+class User(models.Model):
+    userId = models.AutoField(primary_key=True)
+    username = models.CharField(max_length=255, unique=True)
+    email = models.EmailField(unique=True)
+    password = models.CharField(max_length=255)
+    # profilePicture = models.CharField(max_length=255)
+    # userType = models.CharField(max_length=255)
+
+class OrderObject(models.Model):
+    orderId = models.AutoField(primary_key=True)
+    userId = models.ForeignKey(User, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    totalPrice = models.DecimalField(max_digits=10, decimal_places=2)
+    status = models.CharField(max_length=255)
+
+class OrderListing(models.Model):
+    orderId = models.ForeignKey(OrderObject, on_delete=models.CASCADE)
+    productId = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
