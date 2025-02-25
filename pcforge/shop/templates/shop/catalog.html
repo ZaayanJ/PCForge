@@ -1,227 +1,219 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>PCForge - Product Catalog</title>
-        {% load static %}
-        <link rel="stylesheet" href="{% static 'shop/styles/output.css' %}">
-        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                font-family: 'Arial', sans-serif;
-            }
-            body {
-                background-color: #1a1a1a;
-                color: #ffffff;
-            }
-            header {
-                background-color: #000000;
-                padding: 1rem;
-                position: fixed;
-                width: 100%;
-                top: 0;
-                z-index: 100;
-                border-bottom: 1px solid #01ff70;
-            }
-            .nav-container {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                max-width: 1200px;
-                margin: 0 auto;
-            }
-            .logo {
-                color: #01ff70;
-                font-size: 1.5rem;
-                font-weight: bold;
-                text-decoration: none;
-            }
-            .cart-counter {
-                background-color: red;
-                color: white;
-                font-size: 0.8rem;
-                font-weight: bold;
-                border-radius: 50%;
-                width: 20px;
-                height: 20px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                position: absolute;
-                top: 10px;
-                right: 10px;
-            }
-            .cart-container {
-                position: relative;
-            }
-            .catalog-description {
-                font-size: 1.0rem;
-                color: #d1d1d1;
-                max-width: 800px;
-                margin: 0 auto 2rem auto;
-                line-height: 1.6;
-                font-weight: 300;
-                text-align: center;
-            }
-            .nav-links {
-                display: flex;
-                gap: 2rem;
-                list-style: none;
-            }
-            .nav-links a {
-                color: #ffffff;
-                text-decoration: none;
-                transition: color 0.3s;
-            }
-            .nav-links a:hover {
-                color: #01ff70;
-            }
-            .main-content {
-                margin-top: 80px;
-                padding: 2rem;
-                max-width: 1200px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .catalog-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 2rem;
-                margin-top: 2rem;
-            }
-            .catalog-item {
-                background-color: #2a2a2a;
-                padding: 1.5rem;
-                border-radius: 10px;
-                text-align: center;
-                transition: transform 0.3s, background-color 0.3s;
-                border: 1px solid #333;
-            }
-            .catalog-item:hover {
-                transform: scale(1.05);
-                background-color: #333;
-            }
-            .catalog-item img {
-                width: 100px;
-                height: auto;
-                margin-bottom: 1rem;
-            }
-            .catalog-item h3 {
-                color: #01ff70;
-                margin-bottom: 0.3rem;
-            }
-            .price {
-                font-size: 1.2rem;
-                color: #ffffff;
-                margin-bottom: 0.8rem;
-            }
-            .view-button, .cart-button {
-                display: block;
-                padding: 0.5rem 1rem;
-                border-radius: 5px;
-                text-decoration: none;
-                transition: background-color 0.3s;
-                margin: 0.5rem auto;
-                width: 80%;
-                text-align: center;
-            }
-            .view-button {
-                background-color: #01ff70;
-                color: #000000;
-            }
-            .view-button:hover {
-                background-color: #00cc5a;
-            }
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCForge - Product Catalog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+        header {
+            background-color: #000000;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #01ff70;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo {
+            color: #01ff70;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
 
-            .button {
-                padding: 0.5rem 1rem;
-                border-radius: 5px;
-                text-decoration: none;
-                transition: all 0.3s;
-                font-weight: bold;
-            }
+        .catalog-description {
+            font-size: 1.0rem; /* Slightly larger font */
+            color: #d1d1d1; /* Light gray for readability */
+            max-width: 100x; /* Prevents too much stretching */
+            margin: 0 auto 2rem auto; /* Centers the text with spacing */
+            line-height: 1.6; /* Adds better spacing between lines */
+            font-weight: 150; /* Slightly lighter font for a clean look */
+        }
 
-            .nav-buttons {
-                display: flex;
-                align-items: center;
-                gap: 1rem; /* Adjust spacing between buttons */
-            }
-
-            .login-btn {
-                background-color: transparent;
-                border: 2px solid #01ff70;
-                color: #01ff70;
-            }
-            .login-btn:hover {
-                background-color: #01ff70;
-                color: #000000;
-            }
-
-
-            .cart-btn {
-                background-color: #01ff70;
-                color: #000000;
-                display: flex;
-                align-items: right;
-                gap: 0.5rem;
-                font-weight: bold;
-            }
-        </style>
-        <script>
-            const cart = {
-                items: [],
-                updateCartCounter: function() {
-                    document.getElementById('cart-counter').innerText = this.items.length;
-                },
-                addItem: function(product) {
-                    this.items.push(product);
-                    this.updateCartCounter();
-                    alert(`${product.name} has been added to the cart!`);
-                }
-            };
-        </script>
-    </head>
-    <body>
-        <header>
-            <div class="nav-container">
-                <a href="{% url 'index' %}" class="logo">PCForge</a>
-                <nav>
-                    <ul class="nav-links">
-                        <li><a href="builder.html">Builder</a></li>
-                        <li><a href="{% url 'catalog' %}">Products</a></li>
-                        <li><a href="{% url 'about-us' %}">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </nav>
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #01ff70;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        .button {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        .login-btn {
+            background-color: transparent;
+            border: 2px solid #01ff70;
+            color: #01ff70;
+        }
+        .login-btn:hover {
+            background-color: #01ff70;
+            color: #000000;
+        }
+        .cart-btn {
+            background-color: #01ff70;
+            color: #000000;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: bold;
+        }
+        .cart-btn:hover {
+            background-color: #00cc5a;
+        }
+        .main-content {
+            margin-top: 80px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .catalog-item {
+            background-color: #2a2a2a;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, background-color 0.3s;
+            border: 1px solid #333;
+        }
+        .catalog-item:hover {
+            transform: scale(1.05);
+            background-color: #333;
+        }
+        .catalog-item img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+        .catalog-item h3 {
+            color: #01ff70;
+            margin-bottom: 0.5rem;
+        }
+        .view-button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #01ff70;
+            color: #000000;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .view-button:hover {
+            background-color: #00cc5a;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">PCForge</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="builder.html">Builder</a></li>
+                    <li><a href="catalog.html">Products</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-buttons">
                 <a href="login.html" class="button login-btn">Login</a>
-                <a href="{% url 'shoppingcart' %}" class="button cart-btn">
+                <a href="cart.html" class="button cart-btn">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M9 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM20 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
                         <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                     </svg>
                     Cart
-                    <span id="cart-counter" class="cart-counter">0</span>
                 </a>
-                
             </div>
-        </header>
-        <main class="main-content">
-            <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Product Catalog</h1>
-            <p class="catalog-description">Explore our wide selection of high-performance PC components, carefully selected to ensure maximum reliability and performance. Whether you're building a gaming rig or a workstation, we have the perfect parts to bring your dream PC to life.</p>
-            <div class="catalog-grid">
-                {% for product in products %}
-                <div class="catalog-item">
-                    <img src="{{product.image.image_url}}" alt="CPU">
-                    <h3>{{product.name}}</h3>
-                    <h4>{{product.price}}</h4>
-                    <a href="{% url 'catalog-details' %}" class="view-button">View Details</a>
-                    <button onclick="cart.addItem({ id: 'cpu', name: 'CPU', price: 299.99, image: 'Catalog_IMGS/CPU.PNG' })"></button>
-                </div>
-                {% endfor %}
+    </header>
+
+    <main class="main-content">
+        <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Product Catalog</h1>
+        <p class="catalog-description">Explore our wide selection of high-performance PC components, carefully selected to ensure maximum reliability and performance. Whether you're building a gaming rig or a workstation, we have the perfect parts to bring your dream PC to life.</p>
+        <div class="catalog-grid">
+            <div class="catalog-item">
+                <img src="Catalog_IMGS/CPU.PNG" alt="CPU">
+                <h3>CPUs</h3>
+                <a href="cpus.html" class="view-button">View Products</a>
             </div>
-        </main>
-    </body>
+            <div class="catalog-item">
+                <img src="Catalog_IMGS/CPU_Cooler.PNG" alt="CPU Coolers">
+                <h3>CPU Coolers</h3>
+                <a href="coolers.html" class="view-button">View Products</a>
+            </div>
+            <div class="catalog-item">
+                <img src="Catalog_IMGS/Motherboard.PNG" alt="Motherboards">
+                <h3>Motherboards</h3>
+                <a href="motherboards.html" class="view-button">View Products</a>
+            </div>
+            <div class="catalog-item">
+                <img src="Catalog_IMGS/Memory.PNG" alt="Memory">
+                <h3>Memory</h3>
+                <a href="memory.html" class="view-button">View Products</a>
+            </div>
+            <div class="catalog-item">
+                <img src="Catalog_IMGS/Storage.PNG" alt="Storage">
+                <h3>Storage</h3>
+                <a href="storage.html" class="view-button">View Products</a>
+            </div>
+            <div class="catalog-item">
+                <img src="Catalog_IMGS/GPU.PNG" alt="Graphics Cards">
+                <h3>Graphics Cards</h3>
+                <a href="graphics.html" class="view-button">View Products</a>
+            </div>
+            <div class="catalog-item">
+                <img src="Catalog_IMGS/PC_Case.PNG" alt="PC Cases">
+                <h3>PC Cases</h3>
+                <a href="pccases.html" class="view-button">View Products</a>
+            </div>
+            <div class="catalog-item">
+                <img src="Catalog_IMGS/PSU.PNG" alt="Power Supplies">
+                <h3>Power Supplies</h3>
+                <a href="psus.html" class="view-button">View Products</a>
+            </div>
+            <div class="catalog-item">
+                <img src="Catalog_IMGS/Monitor.PNG" alt="Monitors">
+                <h3>Monitors</h3>
+                <a href="monitors.html" class="view-button">View Products</a>
+            </div>
+        </div>
+    </main>
+</body>
 </html>
+
