@@ -113,8 +113,8 @@ class Monitor(models.Model):
 class Customer(models.Model):
     userId = models.AutoField(primary_key=True)
     username = models.CharField(max_length=255, unique=True)
-    firstName = models.CharField(max_length=255)
-    lastName = models.CharField(max_length=255)
+    # firstName = models.CharField(max_length=255)
+    # lastName = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=255)
     # profilePicture = models.CharField(max_length=255)

@@ -38,5 +38,6 @@ urlpatterns = [
     path("catalog", CatalogView.as_view(), name='catalog'),
     path("about-us", AboutUsView.as_view(), name='about-us'),
     path("", IndexView.as_view(), name="index"),
-    path("catalog-details", CatalogDetailsView.as_view(), name="catalog-details")
+    path("catalog-details", CatalogDetailsView.as_view(), name="catalog-details"),
+    path("profile", ProfilePageView.as_view(), name="profile")
 ]
