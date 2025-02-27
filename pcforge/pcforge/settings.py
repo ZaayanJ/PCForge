@@ -76,12 +76,8 @@ WSGI_APPLICATION = 'pcforge.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'pcforge',
-	'USER': 'pcforge',
-	'PASSWORD':'pcforge2025',
-	'HOST': 'localhost',
-	'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
