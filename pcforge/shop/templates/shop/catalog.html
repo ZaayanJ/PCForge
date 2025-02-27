@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PCForge - Product Catalog</title>
+
+    {% load static %}
     <style>
         * {
             margin: 0;
@@ -168,52 +170,51 @@
         <p class="catalog-description">Explore our wide selection of high-performance PC components, carefully selected to ensure maximum reliability and performance. Whether you're building a gaming rig or a workstation, we have the perfect parts to bring your dream PC to life.</p>
         <div class="catalog-grid">
             <div class="catalog-item">
-                <img src="Catalog_IMGS/CPU.PNG" alt="CPU">
+                <img src="{% static 'shop/images/CPU.PNG' %}" alt="CPU">
                 <h3>CPUs</h3>
-                <a href="cpus.html" class="view-button">View Products</a>
+                <a href="{% url 'cpu' %}" class="view-button">View Products</a>
             </div>
             <div class="catalog-item">
-                <img src="Catalog_IMGS/CPU_Cooler.PNG" alt="CPU Coolers">
+                <img src="{% static 'shop/images/CPU_Cooler.PNG' %}" alt="CPU Coolers">
                 <h3>CPU Coolers</h3>
-                <a href="coolers.html" class="view-button">View Products</a>
+                <a href="{% url 'cpucoolers' %}" class="view-button">View Products</a>
             </div>
             <div class="catalog-item">
-                <img src="Catalog_IMGS/Motherboard.PNG" alt="Motherboards">
+                <img src="{% static 'shop/images//Motherboard.PNG' %}" alt="Motherboards">
                 <h3>Motherboards</h3>
-                <a href="motherboards.html" class="view-button">View Products</a>
+                <a href="{% url 'motherboard' %}" class="view-button">View Products</a>
             </div>
             <div class="catalog-item">
-                <img src="Catalog_IMGS/Memory.PNG" alt="Memory">
+                <img src="{% static 'shop/images/Memory.PNG' %}" alt="Memory">
                 <h3>Memory</h3>
-                <a href="memory.html" class="view-button">View Products</a>
+                <a href="{% url 'memory' %}" class="view-button">View Products</a>
             </div>
             <div class="catalog-item">
-                <img src="Catalog_IMGS/Storage.PNG" alt="Storage">
+                <img src="{% static 'shop/images/Storage.PNG'%}" alt="Storage">
                 <h3>Storage</h3>
-                <a href="storage.html" class="view-button">View Products</a>
+                <a href="{% url 'storage' %}" class="view-button">View Products</a>
             </div>
             <div class="catalog-item">
-                <img src="Catalog_IMGS/GPU.PNG" alt="Graphics Cards">
+                <img src="{% static 'shop/images/GPU.PNG'%}" alt="Graphics Cards">
                 <h3>Graphics Cards</h3>
-                <a href="graphics.html" class="view-button">View Products</a>
+                <a href="{% url 'gpu' %}" class="view-button">View Products</a>
             </div>
             <div class="catalog-item">
-                <img src="Catalog_IMGS/PC_Case.PNG" alt="PC Cases">
+                <img src="{% static 'shop/images/PC_Case.PNG' %}" alt="PC Cases">
                 <h3>PC Cases</h3>
-                <a href="pccases.html" class="view-button">View Products</a>
+                <a href="{% url 'pccases' %}" class="view-button">View Products</a>
             </div>
             <div class="catalog-item">
-                <img src="Catalog_IMGS/PSU.PNG" alt="Power Supplies">
+                <img src="{% static 'shop/images/PSU.PNG' %}" alt="Power Supplies">
                 <h3>Power Supplies</h3>
-                <a href="psus.html" class="view-button">View Products</a>
+                <a href="{% url 'psu' %}" class="view-button">View Products</a>
             </div>
             <div class="catalog-item">
-                <img src="Catalog_IMGS/Monitor.PNG" alt="Monitors">
+                <img src="{% static 'shop/images/Monitor.PNG' %}" alt="Monitors">
                 <h3>Monitors</h3>
-                <a href="monitors.html" class="view-button">View Products</a>
+                <a href="{% url 'monitors' %}" class="view-button">View Products</a>
             </div>
         </div>
     </main>
 </body>
 </html>
-
