@@ -11,6 +11,7 @@ class PCCasesView(TemplateView):
         pccases = PCCase.objects.select_related("prod_id").all()
         context = {
             "pccases": [{
+                "id":pccase.prod_id.id,
                 "formFactor": pccase.formFactor,
                 "maxGPULengthMM": pccase.maxGPULengthMM,
                 "maxCPUCoolerHeightMM": pccase.maxCPUCoolerHeightMM,

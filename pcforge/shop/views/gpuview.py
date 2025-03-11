@@ -11,6 +11,7 @@ class GPUView(TemplateView):
         gpus = GPU.objects.select_related("prod_id").all()
         context = {
             "gpus": [{
+                "id": gpu.prod_id.id,
                 "chipset": gpu.chipset, 
                 "memoryType": gpu.memoryType, 
                 "memoryGB": gpu.memoryGB, 

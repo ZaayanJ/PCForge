@@ -11,6 +11,7 @@ class MonitorsView(TemplateView):
         monitors = Monitor.objects.select_related("prod_id").all()
         context = {
             "monitors": [{
+                "id": monitor.prod_id.id,
                 "screenSizeInches": monitor.screenSizeInches, 
                 "resolution": monitor.resolution, 
                 "refreshRateHz": monitor.refreshRateHz,

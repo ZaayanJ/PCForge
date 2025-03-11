@@ -11,8 +11,8 @@ from shop.models import PCCase
 from shop.models import PSU
 from shop.models import Monitor
 from shop.models import Customer
-from shop.models import OrderObject
-from shop.models import OrderListing
+from shop.models import Order
+from shop.models import OrderItem
 
 admin.site.register(Product)
 admin.site.register(Image)
@@ -26,5 +26,5 @@ admin.site.register(PCCase)
 admin.site.register(PSU)
 admin.site.register(Monitor)
 admin.site.register(Customer)
-admin.site.register(OrderObject)
-admin.site.register(OrderListing)
+admin.site.register(Order)
+admin.site.register(OrderItem)

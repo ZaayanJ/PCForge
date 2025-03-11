@@ -14,6 +14,7 @@ class MemoryView(TemplateView):
         memory_list = []
         for memory in memory_items:
             memory_list.append({
+                "id":memory.prod_id.id,
                 "memoryType": memory.memoryType, 
                 "speedMHz": memory.speedMHz,
                 # Remove this line - memoryGB is not in your model

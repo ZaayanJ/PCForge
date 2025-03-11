@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Your Cart - PCForge</title>
+        {% load static %}
+        <style>
+            body {
+                background-color: #1a1a1a;
+                color: #ffffff;
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+
+            .cart-container {
+                max-width: 1200px;
+                margin: 80px auto;
+                padding: 20px;
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: 20px;
+            }
+
+            .cart-items-section {
+                background-color: #2a2a2a;
+                border-radius: 8px;
+                padding: 20px;
+            }
+
+            .cart-summary-section {
+                background-color: #2a2a2a;
+                border-radius: 8px;
+                padding: 20px;
+                height: fit-content;
+            }
+
+            .cart-item {
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid #333333;
+                padding: 15px 0;
+            }
+
+            .cart-item:last-child {
+                border-bottom: none;
+            }
+
+            .cart-item img {
+                width: 100px;
+                height: 100px;
+                object-fit: cover;
+                border-radius: 4px;
+                margin-right: 20px;
+            }
+
+            .item-details {
+                flex-grow: 1;
+            }
+
+            .item-name {
+                font-size: 1.2rem;
+                margin-bottom: 5px;
+            }
+
+            .item-price {
+                color: #01ff70;
+                font-weight: bold;
+            }
+
+            .quantity-controls {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            .quantity-controls button {
+                background-color: #01ff70;
+                border: none;
+                color: black;
+                padding: 5px 10px;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .quantity-controls input {
+                width: 50px;
+                padding: 5px;
+                text-align: center;
+                background-color: #333333;
+                border: 1px solid #444444;
+                color: white;
+            }
+
+            .remove-btn {
+                background-color: #ff4444;
+                border: none;
+                color: white;
+                padding: 5px 10px;
+                border-radius: 4px;
+                cursor: pointer;
+                margin-left: 20px;
+            }
+
+            .summary-section {
+                margin: 15px 0;
+                padding: 15px 0;
+                border-bottom: 1px solid #333333;
+            }
+
+            .summary-section:last-child {
+                border-bottom: none;
+            }
+
+            .promo-input {
+                display: flex;
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            .promo-input input {
+                flex-grow: 1;
+                padding: 8px;
+                background-color: #333333;
+                border: 1px solid #444444;
+                color: white;
+                border-radius: 4px;
+            }
+
+            .promo-input button {
+                background-color: #01ff70;
+                border: none;
+                color: black;
+                padding: 8px 15px;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .shipping-option {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin: 10px 0;
+                padding: 10px;
+                border: 1px solid #333333;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .shipping-option:hover {
+                background-color: #333333;
+            }
+
+            .shipping-option input[type="radio"] {
+                accent-color: #01ff70;
+            }
+
+            .checkout-btn {
+                background-color: #01ff70;
+                border: none;
+                color: black;
+                padding: 15px;
+                border-radius: 4px;
+                cursor: pointer;
+                width: 100%;
+                font-size: 1.1rem;
+                font-weight: bold;
+                margin-top: 20px;
+            }
+
+            .checkout-btn:hover {
+                background-color: #00cc5a;
+            }
+
+            .price-row {
+                display: flex;
+                justify-content: space-between;
+                margin: 5px 0;
+            }
+
+            .savings {
+                color: #01ff70;
+            }
+
+            .alert {
+                padding: 10px;
+                border-radius: 4px;
+                margin: 10px 0;
+            }
+
+            .img_size {
+                width: 60px;
+                height: auto;
+                border-radius: 5px;
+                display: block;
+                margin: 0 auto;
+                float: left;
+            }
+
+            .alert-success {
+                background-color: rgba(1, 255, 112, 0.1);
+                border: 1px solid #01ff70;
+                color: #01ff70;
+            }
+
+            .alert-error {
+                background-color: rgba(255, 68, 68, 0.1);
+                border: 1px solid #ff4444;
+                color: #ff4444;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="cart-container">
+            <div class="cart-items-section">
+                <h1>Review</h1>
+                <div id="cart-items">
+                    <!-- Cart items will be dynamically inserted here -->
+
+                    {% for product in cart_products%}
+                    <div style="padding: 35px">
+                        {% comment %} <img class="img_size" src="{% static 'shop/product_images/' %}{{ product.mainImage }}" alt="{{ product.name }}">  {% endcomment %}
+                        <h2>{{product.name}}</h2> {{product.price}}
+                        <br/>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="cart-summary-section">
+                <h2>Total</h2>
+                
+                <!-- Promo Code Section -->
+                <div class="summary-section">
+                    {% comment %} <h3>Promo Code</h3>
+                    <div class="promo-input">
+                        <input type="text" id="promo-code" placeholder="Enter promo code">
+                        <button onclick="applyPromoCode()">Apply</button>
+                    </div>
+                    <div id="promo-message"></div> {% endcomment %}
+                </div>
+
+                <!-- Shipping Section -->
+                {% comment %} <div class="summary-section">
+                    <h3>Shipping Method</h3>
+                    <div class="shipping-option">
+                        <input type="radio" name="shipping" id="standard" value="0" checked>
+                        <label for="standard">
+                            <strong>Standard Shipping</strong>
+                            <div>5-7 business days</div>
+                            <div>Free</div>
+                        </label>
+                    </div>
+                    <div class="shipping-option">
+                        <input type="radio" name="shipping" id="express" value="19.99">
+                        <label for="express">
+                            <strong>Express Shipping</strong>
+                            <div>2-3 business days</div>
+                            <div>$19.99</div>
+                        </label>
+                    </div>
+                    <div class="shipping-option">
+                        <input type="radio" name="shipping" id="overnight" value="29.99">
+                        <label for="overnight">
+                            <strong>Overnight Shipping</strong>
+                            <div>Next business day</div>
+                            <div>$29.99</div>
+                        </label>
+                    </div>
+                </div> {% endcomment %}
+
+                <!-- Price Summary -->
+                {% comment %} <div class="summary-section">
+                    <div class="price-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="price-row">
+                        <span>Shipping</span>
+                        <span id="shipping-cost">$0.00</span>
+                    </div>
+                    <div class="price-row" id="discount-row" style="display: none;">
+                        <span>Discount</span>
+                        <span class="savings" id="discount-amount">-$0.00</span>
+                    </div>
+                    <div class="price-row">
+                        <span>Tax (7%)</span>
+                        <span id="tax-amount">$0.00</span>
+                    </div> {% endcomment %}
+                    <div class="price-row" style="margin-top: 15px; font-size: 1.2rem; font-weight: bold;">
+                        {% comment %} <span>Total</span> {% endcomment %}
+                        <span id="total-amount">${{totals}}</span>
+                    </div>
+                </div>
+                <form method="POST" action="{% url 'process_order' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="checkout-btn">Order</button>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            // Enhanced cart functionality
+            class EnhancedCart extends ShoppingCart {
+                constructor() {
+                    super();
+                    this.promoCode = null;
+                    this.shippingMethod = 'standard';
+                    this.taxRate = 0.07;
+                }
+
+                calculateSubtotal() {
+                    return this.items.reduce((total, item) => total + (item.price * item.quantity), 0);
+                }
+
+                calculateDiscount() {
+                    const subtotal = this.calculateSubtotal();
+                    if (this.promoCode === 'WELCOME10') {
+                        return subtotal * 0.10;
+                    }
+                    return 0;
+                }
+
+                calculateShipping() {
+                    const shippingRates = {
+                        'standard': 0,
+                        'express': 19.99,
+                        'overnight': 29.99
+                    };
+                    return shippingRates[this.shippingMethod];
+                }
+
+                calculateTax() {
+                    const subtotal = this.calculateSubtotal();
+                    const discount = this.calculateDiscount();
+                    return (subtotal - discount) * this.taxRate;
+                }
+
+                calculateTotal() {
+                    const subtotal = this.calculateSubtotal();
+                    const discount = this.calculateDiscount();
+                    const shipping = this.calculateShipping();
+                    const tax = this.calculateTax();
+                    return subtotal - discount + shipping + tax;
+                }
+            }
+
+            const enhancedCart = new EnhancedCart();
+
+            // Update display with all calculations
+            function updateCartDisplay() {
+                
+
+                // Update summary section
+                document.getElementById('subtotal').textContent = `$${enhancedCart.calculateSubtotal().toFixed(2)}`;
+                document.getElementById('shipping-cost').textContent = `$${enhancedCart.calculateShipping().toFixed(2)}`;
+                document.getElementById('tax-amount').textContent = `$${enhancedCart.calculateTax().toFixed(2)}`;
+                document.getElementById('total-amount').textContent = `$${enhancedCart.calculateTotal().toFixed(2)}`;
+
+                const discount = enhancedCart.calculateDiscount();
+                const discountRow = document.getElementById('discount-row');
+                if (discount > 0) {
+                    discountRow.style.display = 'flex';
+                    document.getElementById('discount-amount').textContent = `-$${discount.toFixed(2)}`;
+                } else {
+                    discountRow.style.display = 'none';
+                }
+            }
+
+            // Promo code functionality
+            function applyPromoCode() {
+                const promoInput = document.getElementById('promo-code');
+                const messageDiv = document.getElementById('promo-message');
+                
+                if (promoInput.value === 'WELCOME10') {
+                    enhancedCart.promoCode = promoInput.value;
+                    messageDiv.innerHTML = '<div class="alert alert-success">Promo code applied! 10% off your order.</div>';
+                    updateCartDisplay();
+                } else {
+                    messageDiv.innerHTML = '<div class="alert alert-error">Invalid promo code.</div>';
+                }
+            }
+
+            // Shipping method selection
+            document.querySelectorAll('input[name="shipping"]').forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    enhancedCart.shippingMethod = e.target.id;
+                    updateCartDisplay();
+                });
+            });
+
+            // Checkout function
+            function proceedToCheckout() {
+                // Add checkout logic here
+                alert('Proceeding to checkout...');
+            }
+
+            // Initial display
+            updateCartDisplay();
+        </script>
+    </body>
+</html>

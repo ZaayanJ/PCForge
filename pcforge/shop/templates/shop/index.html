@@ -8,7 +8,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
         <style>
             .bg-custom {
-                background-image: url("{% static 'shop/images/background-img.png' %}");
+                background-image: url("{% static 'shop/images/background-img.jpg' %}");
             }
         </style>
     </head>
@@ -29,7 +29,7 @@
         <header id="header" class="bg-black fixed w-full top-0 z-50 border-b border-[#01ff70] p-4 top-12 left-0 z-40 shadow-md">
             <div class="max-w-7xl mx-auto flex justify-between items-center relative">
                 <div class="flex items-center gap-2">
-                    <img src="{% static 'shop/images/logo2.png' %}" alt="logo" class="w-12 h-12">
+                    <img src="{% static 'shop/images/logo.png' %}" alt="logo" class="w-12 h-12">
                     <a href="{% url 'index' %}" class="text-[#01ff70] text-xl font-['Blowbrush']" style="font-family: 'Press Start 2P', serif; font-weight: 200;">PCForge</a>
                 </div>
                 <nav>
@@ -40,7 +40,11 @@
                     </ul>
                 </nav>
                 <div class="flex gap-4">
-                    <a href="login.html" class="border-2 border-[#01ff70] text-[#01ff70] px-4 py-2 rounded hover:bg-[#01ff70] hover:text-black">Login</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'profile' %}" class="border-2 border-[#01ff70] text-[#01ff70] px-4 py-2 rounded hover:bg-[#01ff70] hover:text-black">Profile</a>
+                    {% else%}
+                        <a href="{% url 'register' %}" class="border-2 border-[#01ff70] text-[#01ff70] px-4 py-2 rounded hover:bg-[#01ff70] hover:text-black">Register</a>
+                    {% endif %}
                     <a href="{% url 'shoppingcart' %}" class="bg-[#01ff70] text-black px-4 py-2 rounded flex items-center gap-2 hover:bg-green-500">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M9 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM20 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>

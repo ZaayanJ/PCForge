@@ -11,6 +11,7 @@ class PSUView(TemplateView):
         psus = PSU.objects.select_related("prod_id").all()
         context = {
             "psus": [{
+                "id":psu.prod_id.id,
                 "wattage": psu.wattage,
                 "efficiencyRating": psu.efficiencyRating,
                 "formFactor": psu.formFactor,

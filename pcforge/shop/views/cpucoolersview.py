@@ -11,6 +11,7 @@ class CPUCoolersView(TemplateView):
         cpucoolers = CPUCooler.objects.select_related("prod_id").all()
         context = {
             "cpucoolers": [{
+                "id": cpucooler.prod_id.id,
                 "coolerType": cpucooler.coolerType, 
                 "fanSizeMM": cpucooler.fanSizeMM, 
                 "rpm": cpucooler.rpm,

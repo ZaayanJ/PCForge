@@ -18,8 +18,15 @@ from shop.views.gpuview import GPUView
 from shop.views.pccasesview import PCCasesView
 from shop.views.psuview import PSUView
 from shop.views.monitorsview import MonitorsView
+from shop.views.registerview import RegisterView
+from shop.views.loginview import LoginView
+from shop.views.logoutview import LogoutView
+from shop.views.profileview import ProfilePageView
 
 urlpatterns = [
+    path("login", LoginView.as_view(), name='login'),
+    path("register/", RegisterView.as_view(), name='register'),
+    path("logout/", LogoutView.as_view(), name='logout'),
     path("monitors", MonitorsView.as_view(), name='monitors'),
     path("psu", PSUView.as_view(), name='psu'),
     path("pccases", PCCasesView.as_view(), name='pccases'),
@@ -34,7 +41,7 @@ urlpatterns = [
     path("evan", EvanView.as_view(), name='evan'),
     path("josue", JosueView.as_view(), name='josue'),
     path("zaayan", ZaayanView.as_view(), name='zaayan'),
-    path("shoppingcart", ShoppingCartView.as_view(), name='shoppingcart'),
+    # path("shoppingcart", ShoppingCartView.as_view(), name='shoppingcart'),
     path("catalog", CatalogView.as_view(), name='catalog'),
     path("about-us", AboutUsView.as_view(), name='about-us'),
     path("", IndexView.as_view(), name="index"),

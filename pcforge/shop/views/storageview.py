@@ -11,6 +11,7 @@ class StorageView(TemplateView):
         storages = Storage.objects.select_related("prod_id").all()
         context = {
             "storages": [{
+                "id":storage.prod_id.id,
                 "storageType": storage.storageType,
                 "capacityGB": storage.capacityGB,
                 "interface": storage.interface,

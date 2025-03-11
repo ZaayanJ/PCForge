@@ -217,6 +217,8 @@
         }
 
     </style>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -304,7 +306,7 @@
                             <td>{{ gpu.baseClockSpeedGHz }} GHz</td>
                             <td>{{ gpu.boostClockSpeedGHz }}</td>
                             <td>${{ gpu.productPrice }}</td>
-                            <td><button class="add-btn">Add</button></td>
+                            <td><button value='{{gpu.id}}'id="add-cart"class="add-btn">Add</button></td>
                         {% endfor %}
                         </tr>
                     </tbody>
@@ -317,7 +319,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Filtering Script -->
-    <script>
+    {% comment %} <script>
         document.addEventListener("DOMContentLoaded", function () {
             const priceRange = document.getElementById("price-range");
             const priceValue = document.getElementById("price-value");
@@ -361,6 +363,33 @@
             ratingFilter.addEventListener("change", filterCPUs);
             resetButton.addEventListener("click", resetFilters);
         });
+    </script> {% endcomment %}
+
+    <script>
+        $(document).on('click', '#add-cart', function(e){
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'cart_add' %}",
+                data: {
+                    product_id: $('#add-cart').val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    action: 'post'
+                },
+
+                success: function(json){
+                    //console.log(json)
+                    document.getElementById("cart_quantity").textContent = json.qty
+                },
+
+                error: function(xhr, errmsg, err){
+                    
+                }
+            })
+        }
+        )
+
+
     </script>
 
 </body>

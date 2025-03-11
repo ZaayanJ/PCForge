@@ -144,18 +144,22 @@
 <body>
     <header>
         <div class="nav-container">
-            <a href="index.html" class="logo">PCForge</a>
+            <a href="{% url 'index' %}" class="logo">PCForge</a>
             <nav>
                 <ul class="nav-links">
                     <li><a href="builder.html">Builder</a></li>
-                    <li><a href="catalog.html">Products</a></li>
-                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="{%url 'catalog'%}">Products</a></li>
+                    <li><a href="{%url 'about-us'%}">About Us</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
             <div class="nav-buttons">
-                <a href="login.html" class="button login-btn">Login</a>
-                <a href="cart.html" class="button cart-btn">
+                {% if user.is_authenticated %}
+                        <a href="{% url 'profile' %}" class="button login-btn">Profile</a>
+                    {% else%}
+                        <a href="{% url 'register' %}" class="button login-btn">Register</a>
+                    {% endif %}
+                <a href="{% url 'shoppingcart' %}" class="button cart-btn">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M9 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM20 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
                         <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>

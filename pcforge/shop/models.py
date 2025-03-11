@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.contrib.auth.models import User
 
 
 class Product(models.Model):
@@ -113,21 +114,22 @@ class Monitor(models.Model):
 class Customer(models.Model):
     userId = models.AutoField(primary_key=True)
     username = models.CharField(max_length=255, unique=True)
-    # firstName = models.CharField(max_length=255)
-    # lastName = models.CharField(max_length=255)
+    firstName = models.CharField(max_length=255)
+    lastName = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=255)
     # profilePicture = models.CharField(max_length=255)
     # userType = models.CharField(max_length=255)
 
-class OrderObject(models.Model):
+class Order(models.Model):
     orderId = models.AutoField(primary_key=True)
-    userId = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    userId = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     totalPrice = models.DecimalField(max_digits=10, decimal_places=2)
     status = models.CharField(max_length=255)
 
-class OrderListing(models.Model):
-    orderId = models.ForeignKey(OrderObject, on_delete=models.CASCADE)
-    productId = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField()
+class OrderItem(models.Model):
+    orderId = models.ForeignKey(Order, on_delete=models.CASCADE, null=True)
+    productId = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    price = models.DecimalField(max_digits=7, decimal_places=2)

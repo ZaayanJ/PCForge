@@ -11,6 +11,7 @@ class MotherboardView(TemplateView):
         motherboards = Motherboard.objects.select_related("prod_id").all()
         context = {
             "motherboards": [{
+                "id": motherboard.prod_id.id,
                 "socket": motherboard.socket, 
                 "chipset": motherboard.chipset,
                 "formFactor": motherboard.formFactor,

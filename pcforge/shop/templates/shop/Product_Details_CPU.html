@@ -217,6 +217,8 @@
         }
 
     </style>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -304,8 +306,9 @@
                             <td>{{ cpu.boostClock }} GHz</td>
                             <td>{{ cpu.microArch }}</td>
                             <td>${{ cpu.productPrice }}</td>
-                            <td><button class="add-btn">Add</button></td>
+                            <td><button value='{{cpu.id}}'id="add-cart"class="add-btn">Add</button></td>
                         </tr>
+                        {% comment %} <h1>{{cpu.id}}</h1> {% endcomment %}
                         {% endfor %}
                     </tbody>
                 </table>
@@ -313,56 +316,32 @@
         </section>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Filtering Script -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const priceRange = document.getElementById("price-range");
-            const priceValue = document.getElementById("price-value");
-            const manufacturerFilter = document.getElementById("manufacturer-filter");
-            const ratingFilter = document.getElementById("rating-filter");
-            const cpuRows = document.querySelectorAll(".cpu-row");
-            const resetButton = document.querySelector(".reset-filters");
+        $(document).on('click', '#add-cart', function(e){
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'cart_add' %}",
+                data: {
+                    product_id: $('#add-cart').val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    action: 'post'
+                },
 
-            function updatePriceValue() {
-                priceValue.textContent = `$50 - $${priceRange.value}`;
-                filterCPUs();
-            }
+                success: function(json){
+                    //console.log(json)
+                    document.getElementById("cart_quantity").textContent = json.qty
+                },
 
-            function filterCPUs() {
-                const maxPrice = parseInt(priceRange.value);
-                const selectedManufacturer = manufacturerFilter.value;
-                const selectedRating = ratingFilter.value;
+                error: function(xhr, errmsg, err){
+                    
+                }
+            })
+        }
+        )
 
-                cpuRows.forEach(row => {
-                    const price = parseInt(row.dataset.price);
-                    const manufacturer = row.dataset.manufacturer;
-                    const rating = parseInt(row.dataset.rating);
 
-                    row.style.display = (price <= maxPrice && 
-                        (selectedManufacturer === "All" || manufacturer === selectedManufacturer) &&
-                        (selectedRating === "All" || rating >= parseInt(selectedRating))
-                    ) ? "" : "none";
-                });
-            }
-
-            function resetFilters() {
-                priceRange.value = 2000;
-                priceValue.textContent = "$50 - $2000";
-                manufacturerFilter.value = "All";
-                ratingFilter.value = "All";
-                filterCPUs();
-            }
-
-            priceRange.addEventListener("input", updatePriceValue);
-            manufacturerFilter.addEventListener("change", filterCPUs);
-            ratingFilter.addEventListener("change", filterCPUs);
-            resetButton.addEventListener("click", resetFilters);
-        });
     </script>
-
 </body>
 </html>
 

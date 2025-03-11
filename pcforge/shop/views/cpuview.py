@@ -10,6 +10,7 @@ class CPUView(TemplateView):
     def get(self, request):
         cpus = CPU.objects.select_related("prod_id").all()
         context = {"cpus": [{
+            "id": cpu.prod_id.id,
             "core": cpu.coreCount, 
             "coreClock": cpu.baseClockSpeedGHz, 
             "boostClock": cpu.boostClockSpeedGHz, 
