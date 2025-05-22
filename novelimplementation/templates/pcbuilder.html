@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PCBuilder | PCForge</title>
+  {% load static %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body class="bg-black text-white">
+
+  <!-- ✅ Navbar -->
+  <nav class="bg-[#191919] border-b border-white fixed w-full z-50">
+    <div class="max-w-11xl mx-auto flex justify-between items-center h-20 px-12 gap-12">
+        <!-- Left: Logo -->
+        <a href="{% url 'index' %}" class="flex items-center space-x-2">
+            <img src="{% static 'shop/images/logo-word-white-grey.png' %}" alt="Logo" class="h-9">
+        </a>
+
+        <!-- Center Nav Links -->
+        <div class="hidden md:flex space-x-8">
+            <a href="{% url 'catalog' %}" class="relative text-[#c1c1c1] hover:text-white transition">PRODUCTS</a>
+            <a href="{% url 'pcbuilder' %}" class="relative text-[#c1c1c1] hover:text-white transition">PC BUILDER</a>
+            {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                    <a href="{% url 'employee_dashboard' %}" class="relative text-[#c1c1c1] hover:text-white transition">EMPLOYEE DASHBOARD</a>
+                {% endif %}
+            {% endif %}
+            <a href="{% url 'about-us' %}" class="relative text-[#c1c1c1] hover:text-white transition">ABOUT</a>
+        </div>
+
+        <!-- Right Buttons -->
+        <div class="flex items-center space-x-3">
+          {% if user.is_authenticated %}
+              {% if user.is_superuser %}
+                  <a href="{% url 'administrator_dashboard' %}" class="border border-white text-white px-2 py-1 rounded hover:bg-white hover:text-black transition">
+                      Admin Panel
+                  </a>
+                  <a href="{% url 'user_management' %}" class="border border-white text-white px-3 py-1 rounded hover:bg-white hover:text-black transition">
+                      User Management
+                  </a>
+                  <a href="{% url 'product_management' %}" class="border border-white text-white px-3 py-1 rounded hover:bg-white hover:text-black transition">
+                      Prod. Management
+                  </a>
+              {% elif user.is_staff %}
+                  <a href="{% url 'employee_profile' %}" class="border border-white text-white px-3 py-1 rounded hover:bg-white hover:text-black transition">
+                      Profile
+                  </a>
+              {% else %}
+                  <a href="{% url 'profile' %}" class="border border-white text-white px-3 py-1 rounded hover:bg-white hover:text-black transition">
+                      Profile
+                  </a>
+              {% endif %}
+          {% else %}
+              <a href="{% url 'register' %}" class="border border-white text-white px-3 py-1 rounded hover:bg-white hover:text-black transition">
+                  Login
+              </a>
+          {% endif %}
+
+          <a href="{% url 'shoppingcart' %}" class="bg-white text-black px-3 py-1 rounded hover:bg-gray-300 transition">
+              Cart
+          </a>
+        </div>
+
+    </div>
+</nav>
+
+
+  <div class="pt-24"></div>
+
+  <!-- ✅ Builder Section -->
+  <div class="max-w-6xl mx-auto bg-[#121212] border-2 border-[#e2e2e2] rounded-xl p-8 mt-6">
+    <h1 class="text-center text-3xl text-[#f2f2f2] mb-6 font-semibold">Choose Your Parts</h1>
+
+    <div class="flex justify-between items-center bg-[#00cc6a] text-black px-4 py-2 rounded-lg mb-4 font-semibold">
+      <span id="compatibilityStatus">✅ Compatibility: No issues or incompatibilities found.</span>
+      {% comment %} <span class="bg-blue-600 text-white px-3 py-1 rounded">⚡ Estimated Wattage: 0W</span> {% endcomment %}
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="table-auto w-full text-left text-white">
+        <thead class="text-[#f2f2f2] border-b border-[#f2f2f2]">
+          <tr>
+            <th class="p-3">Component</th>
+            <th class="p-3">Selection</th>
+            <th class="p-3">Price</th>
+            <th class="p-3">Where</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            <tr class="border-b border-[#1e1e1e]">
+                <td class="p-3">CPU</td>
+                <td class="p-3" id="cpuSelection">
+                  <select id="cpuSelect" class="bg-black border border-[#f2f2f2] text-white p-2 rounded w-full">
+                    <option value="" data-price="0">-- Select a CPU --</option>
+                    {% for cpu in cpus %}
+                      <option value="{{ cpu.prod_id.id }}" data-price="{{ cpu.prod_id.price }}">
+                        {{ cpu.prod_id.name }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </td>
+                <td class="p-3" id="cpuPrice">$0.00</td>
+                <td class="p-3"><span class="bg-[#f2f2f2] text-black font-semibold px-3 py-1 rounded-full text-sm shadow-md">PCForge</span></td>
+              </tr>
+              
+              <tr class="border-b border-[#1e1e1e]">
+                <td class="p-3">GPU</td>
+                <td class="p-3" id="gpuSelection">
+                  <select id="gpuSelect" class="bg-black border border-[#f2f2f2] text-white p-2 rounded w-full">
+                    <option value="" data-price="0">-- Select a GPU --</option>
+                    {% for gpu in gpus %}
+                      <option value="{{ gpu.prod_id.id }}" data-price="{{ gpu.prod_id.price }}">
+                        {{ gpu.prod_id.name }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </td>
+                <td class="p-3" id="gpuPrice">$0.00</td>
+                <td class="p-3"><span class="bg-[#f2f2f2] text-black font-semibold px-3 py-1 rounded-full text-sm shadow-md">PCForge</span></td>
+              </tr>
+              
+              <tr class="border-b border-[#1e1e1e]">
+                <td class="p-3">Memory</td>
+                <td class="p-3" id="memorySelection">
+                  <select id="memorySelect" class="bg-black border border-[#f2f2f2] text-white p-2 rounded w-full">
+                    <option value="" data-price="0">-- Select Memory --</option>
+                    {% for ram in memory %}
+                      <option value="{{ ram.prod_id.id }}" data-price="{{ ram.prod_id.price }}">
+                        {{ ram.prod_id.name }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </td>
+                <td class="p-3" id="memoryPrice">$0.00</td>
+                <td class="p-3"><span class="bg-[#f2f2f2] text-black font-semibold px-3 py-1 rounded-full text-sm shadow-md">PCForge</span></td>
+              </tr>
+              
+              <tr class="border-b border-[#1e1e1e]">
+                <td class="p-3">Motherboard</td>
+                <td class="p-3" id="motherboardSelection">
+                  <select id="motherboardSelect" class="bg-black border border-[#f2f2f2] text-white p-2 rounded w-full">
+                    <option value="" data-price="0">-- Select a Motherboard --</option>
+                    {% for board in motherboards %}
+                      <option value="{{ board.prod_id.id }}" data-price="{{ board.prod_id.price }}">
+                        {{ board.prod_id.name }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </td>
+                <td class="p-3" id="motherboardPrice">$0.00</td>
+                <td class="p-3"><span class="bg-[#f2f2f2] text-black font-semibold px-3 py-1 rounded-full text-sm shadow-md">PCForge</span></td>
+              </tr>
+              
+              <tr class="border-b border-[#1e1e1e]">
+                <td class="p-3">CPU Cooler</td>
+                <td class="p-3" id="cpucoolerSelection">
+                  <select id="cpucoolerSelect" class="bg-black border border-[#f2f2f2] text-white p-2 rounded w-full">
+                    <option value="" data-price="0">-- Select a CPU Cooler --</option>
+                    {% for cooler in cpucoolers %}
+                      <option value="{{ cooler.prod_id.id }}" data-price="{{ cooler.prod_id.price }}">
+                        {{ cooler.prod_id.name }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </td>
+                <td class="p-3" id="cpucoolerPrice">$0.00</td>
+                <td class="p-3"><span class="bg-[#f2f2f2] text-black font-semibold px-3 py-1 rounded-full text-sm shadow-md">PCForge</span></td>
+              </tr>
+              
+              <tr class="border-b border-[#1e1e1e]">
+                <td class="p-3">PSU</td>
+                <td class="p-3" id="psuSelection">
+                  <select id="psuSelect" class="bg-black border border-[#f2f2f2] text-white p-2 rounded w-full">
+                    <option value="" data-price="0">-- Select a PSU --</option>
+                    {% for psu in psus %}
+                      <option value="{{ psu.prod_id.id }}" data-price="{{ psu.prod_id.price }}">
+                        {{ psu.prod_id.name }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </td>
+                <td class="p-3" id="psuPrice">$0.00</td>
+                <td class="p-3"><span class="bg-[#f2f2f2] text-black font-semibold px-3 py-1 rounded-full text-sm shadow-md">PCForge</span></td>
+              </tr>
+              
+              <tr class="border-b border-[#1e1e1e]">
+                <td class="p-3">Storage</td>
+                <td class="p-3" id="storageSelection">
+                  <select id="storageSelect" class="bg-black border border-[#f2f2f2] text-white p-2 rounded w-full">
+                    <option value="" data-price="0">-- Select Storage --</option>
+                    {% for drive in storage %}
+                      <option value="{{ drive.prod_id.id }}" data-price="{{ drive.prod_id.price }}">
+                        {{ drive.prod_id.name }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </td>
+                <td class="p-3" id="storagePrice">$0.00</td>
+                <td class="p-3"><span class="bg-[#f2f2f2] text-black font-semibold px-3 py-1 rounded-full text-sm shadow-md">PCForge</span></td>
+              </tr>
+              
+              <tr class="border-b border-[#1e1e1e]">
+                <td class="p-3">Case</td>
+                <td class="p-3" id="pccaseSelection">
+                  <select id="pccaseSelect" class="bg-black border border-[#f2f2f2] text-white p-2 rounded w-full">
+                    <option value="" data-price="0">-- Select a Case --</option>
+                    {% for case in pccases %}
+                      <option value="{{ case.prod_id.id }}" data-price="{{ case.prod_id.price }}">
+                        {{ case.prod_id.name }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </td>
+                <td class="p-3" id="pccasePrice">$0.00</td>
+                <td class="p-3"><span class="bg-[#f2f2f2] text-black font-semibold px-3 py-1 rounded-full text-sm shadow-md">PCForge</span></td>
+              </tr>
+              
+              <tr class="border-b border-[#1e1e1e]">
+                <td class="p-3">Monitor</td>
+                <td class="p-3" id="monitorSelection">
+                  <select id="monitorSelect" class="bg-black border border-[#f2f2f2] text-white p-2 rounded w-full">
+                    <option value="" data-price="0">-- Select a Monitor --</option>
+                    {% for monitor in monitors %}
+                      <option value="{{ monitor.prod_id.id }}" data-price="{{ monitor.prod_id.price }}">
+                        {{ monitor.prod_id.name }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </td>
+                <td class="p-3" id="monitorPrice">$0.00</td>
+                <td class="p-3"><span class="bg-[#f2f2f2] text-black font-semibold px-3 py-1 rounded-full text-sm shadow-md">PCForge</span></td>
+              </tr>
+              
+          
+        </tbody>
+      </table>
+    </div>
+
+    <div class="text-right text-[#f2f2f2] text-xl font-bold mt-6">
+        Total: $<span id="totalPrice">0.00</span>
+        <button id="add-pc-to-cart" class="bg-[#f2f2f2] text-black font-bold px-4 py-2 rounded hover:bg-[#316ae4] transition mt-4">
+            Add PC to Cart
+          </button>
+          
+      </div>
+  </div>
+
+  <!-- ✅ Footer -->
+  <footer class="bg-[#1a1a1a] text-white pt-5">
+    <div class="max-w-6xl mx-auto px-6 md:px-12 pb-10">
+      <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+        <p>&copy; 2025 PCForge. All rights reserved.</p>
+        {% comment %} <div class="flex space-x-4 mt-4 md:mt-0">
+          <a href="{% url 'terms' %}" class="hover:text-[#f2f2f2] transition">Terms of Service</a>
+          <a href="{% url 'privacy' %}" class="hover:text-[#f2f2f2] transition">Privacy Policy</a>
+          <a href="{% url 'contact' %}" class="hover:text-[#f2f2f2] transition">Contact</a>
+        </div> {% endcomment %}
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const prices = {
+      cpu: 0,
+      gpu: 0,
+      memory: 0,
+      motherboard: 0,
+      cpucooler: 0,
+      psu: 0,
+      storage: 0,
+      pccase: 0,
+      monitor: 0
+    };
+  
+    function updateTotal() {
+      const total = Object.values(prices).reduce((sum, val) => sum + val, 0);
+      const totalElement = document.getElementById("totalPrice");
+      if (totalElement) {
+        totalElement.textContent = total.toFixed(2);
+      }
+    }
+  
+    function setupDropdown(part) {
+      const select = document.getElementById(`${part}Select`);
+      const priceDisplay = document.getElementById(`${part}Price`);
+  
+      if (!select || !priceDisplay) return;
+  
+      select.addEventListener("change", () => {
+        const selected = select.options[select.selectedIndex];
+        const price = parseFloat(selected.getAttribute("data-price")) || 0;
+        priceDisplay.textContent = `$${price.toFixed(2)}`;
+        prices[part] = price;
+        updateTotal();
+      });
+    }
+  
+    window.onload = () => {
+      const parts = [
+        "cpu",
+        "gpu",
+        "memory",
+        "motherboard",
+        "cpucooler",
+        "psu",
+        "storage",
+        "pccase",
+        "monitor"
+      ];
+  
+      parts.forEach(setupDropdown);
+    };
+  </script>
+
+  <script>
+    $(document).on('click', '#add-pc-to-cart', function(e) {
+      e.preventDefault();
+  
+      const selectors = [
+      '#cpuSelect',
+      '#gpuSelect',
+      '#memorySelect',
+      '#motherboardSelect',
+      '#cpucoolerSelect',
+      '#psuSelect',
+      '#storageSelect',
+      '#pccaseSelect',
+      '#monitorSelect'
+    ];
+    
+    const selectedParts = selectors.map(id => parseInt($(id).val())).filter(val => !isNaN(val));
+    
+    let hasIncompatibility = false;
+    
+    for (let i = 0; i < selectedParts.length; i++) {
+        const pid = selectedParts[i];
+        const incompatibleIds = incompatibilities[pid] || [];
+        for (let j = 0; j < selectedParts.length; j++) {
+            if (i !== j && incompatibleIds.includes(selectedParts[j])) {
+                // Update banner
+                const banner = document.getElementById("compatibilityStatus");
+                if (banner) {
+                    banner.textContent = `❌ Incompatibility detected between "${nameMap[pid]}" and "${nameMap[selectedParts[j]]}".`;
+                    banner.parentElement.style.backgroundColor = '#cc0000';  // red
+                }
+    
+                // Show alert
+                alert(`⚠️ "${nameMap[pid]}" is incompatible with "${nameMap[selectedParts[j]]}". Please change your selection.`);
+    
+                hasIncompatibility = true;
+                break;
+            }
+        }
+        if (hasIncompatibility) break;
+    }
+    
+    // If incompatible, don't proceed
+    if (hasIncompatibility) {
+        return;
+    }
+    
+    if (selectedParts.length === 0) {
+        alert("Please select at least one part.");
+        return;
+    }
+    
+    // No incompatibility, set banner back to normal
+    const banner = document.getElementById("compatibilityStatus");
+    if (banner) {
+        banner.textContent = "✅ Compatibility: No issues or incompatibilities found.";
+        banner.parentElement.style.backgroundColor = '#00cc6a';  // green
+    }
+    
+    // Proceed to add to cart
+    const csrfToken = '{{ csrf_token }}';
+    $.ajax({
+        type: 'POST',
+        url: "{% url 'cart_add_bulk' %}",
+        data: {
+            product_ids: JSON.stringify(selectedParts),
+            csrfmiddlewaretoken: csrfToken,
+            action: 'post'
+        },
+        success: function(response) {
+            alert("All selected parts added to cart!");
+            window.location.href = "{% url 'shoppingcart' %}";
+        },
+        error: function(xhr, errmsg, err) {
+            console.error("Cart bulk add failed:", errmsg);
+        }
+      });
+  
+    });
+  </script>
+  
+  <script>
+      const incompatibilities = {{ incompatibilities_json|safe }};
+      const nameMap = {{ name_map_json|safe }};
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,690 @@
+/* ***** Home/Landing Page ***** */
+/* Navbar Styling */
+.navbar {
+    background-color: #191919;
+    height: 80px;
+    border-bottom: 0.5px solid white;
+}
+.nav-link {
+    position: relative;
+    text-decoration: none;
+    color: #c1c1c1;
+    font-size: medium;
+    margin: 0 15px;
+}
+.nav-link:hover{
+    color: white;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+.nav-link:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Landing Section Styling */
+.landing-section {
+    background: url('background-tech.jpg') no-repeat center center/cover;
+    height: 90vh; /* Full screen height */
+    display: flex;
+    align-items: center;
+    padding-left: 5%;
+    color: white;
+}
+.landing-text {
+    max-width: 500px;
+    font-family: 'Dosis', serif;
+}
+.landing-text h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+.landing-text p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+.animated-logo {
+    height: 250px;
+    width: auto;
+    display: block;
+    background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet);
+    background-size: 1400% 1400%;
+    animation: rgbShift 16s ease infinite;
+}
+@keyframes rgbShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Featured Product Information Styling */
+.featuredproduct-information {
+    background-color: black;
+    color: white;
+    padding: 100px 50px 50px;
+}
+.featuredproduct-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.featuredproduct-image {
+    width: 40%;
+}
+.featuredproduct-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.featuredproduct-content {
+    width: 40%;
+    margin-left: auto;
+    text-align: right;
+    font-family: 'Dosis', serif;
+}
+.featuredproduct-content h2 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+.featuredproduct-content p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+/* Featured Product Animation */
+.featuredproduct-animation {
+    background: radial-gradient(ellipse, white 10%, black 70%);
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image-stack {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+}
+.stack-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 1s ease;
+    width: 300px;
+    height: auto;
+}
+.labels {
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+}
+.label {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+.label .box {
+    background: rgba(255,255,255,0.1);
+    padding: 6px 10px;
+    border-radius: 4px;
+    backdrop-filter: blur(6px);
+    font-size: 14px;
+    text-align: center;
+}
+.label .line {
+    width: 2px;
+    height: 80px;
+    background-color: white;
+    margin-top: 4px;
+}
+
+/* Why PCForge Section */
+.whypcforge-section {
+    background-color: black;
+    color: white;
+    padding: 80px 20px;
+    width: 100%;
+    overflow-x: hidden;
+}
+.whypcforge-header h2,
+.whypcforge-header p {
+    margin-bottom: 20px;
+}
+.header-text {
+    max-width: 70%;
+    margin: 0 auto;
+    font-family: 'Dosis', serif;
+}
+.header-text h2 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+.header-text p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+.carousel-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.carousel-images {
+    display: flex;
+    gap: 20px;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    padding: 20px 0;
+}
+.carousel-img {
+    width: 2.5in;
+    height: 3.5in;
+    object-fit: cover;
+    opacity: 0.5;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.carousel-img.active {
+    transform: scale(1.1);
+    opacity: 1;
+    z-index: 2;
+}
+.carousel-arrow {
+    background: none;
+    border: 2px solid white;
+    color: white;
+    font-size: 2rem;
+    margin-top: 20px;
+    cursor: pointer;
+    padding: 5px 15px;
+    border-radius: 4px;
+}
+.carousel-arrow:hover {
+    background: white;
+    color: black;
+}
+
+/* Footer */
+.site-footer {
+    background-color: #191919;
+    color: white;
+    padding: 40px 20px;
+    font-size: 0.9rem;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.footer-left a {
+    color: white;
+    text-decoration: underline;
+    margin: 0 5px;
+}
+.footer-right {
+    display: flex;
+    gap: 15px;
+}
+.social-icon {
+    color: white;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+.social-icon:hover {
+    color: #ccc;
+}
+
+
+/* ***** About Page ***** */
+/* Our Vision */
+.our-vision-section {
+    background-color: #000; /* Or your theme background */
+    padding: 60px 20px;
+}
+.vision-top-img {
+    max-width: 800px;
+}
+.vision-text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    font-family: 'Dosis', serif;
+}
+.vision-side-img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Meet The Team */
+.team-section {
+    background: linear-gradient(to bottom, black, #301934);
+    position: relative;
+    padding: 80px 20px;
+    overflow: hidden;
+}
+.team-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
+    animation: moveStars 60s linear infinite;
+    opacity: 0.4;
+}
+@keyframes moveStars {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100px); }
+}
+.section-title {
+    font-size: 3rem;
+    margin-bottom: 60px;
+    font-family: 'Dosis', serif;
+    font-weight: bold;
+}
+.section-footer {
+    font-size: 2rem;
+    margin-top: 60px;
+    font-family: 'Dosis', serif;
+}
+.team-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    z-index: 1;
+    position: relative;
+}
+.team-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    width: 220px;
+    text-align: center;
+    color: white;
+    backdrop-filter: blur(8px);
+}
+.team-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 2px solid white;
+}
+.team-img:hover {
+    border: 2px solid purple;
+}
+.team-name {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+.social-icons a {
+    color: white;
+    margin: 0 5px;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+.social-icons a:hover {
+    color: #c1c1c1;
+}
+.team-email {
+    font-size: 0.9rem;
+    margin-top: 10px;
+    word-break: break-word;
+}
+
+
+/* ***** Login Page ***** */
+/* Header */
+.background-img {
+    position: relative;
+    background: url('rtx2080-image.jfif') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    margin: 0;
+}
+.background-img::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Adjust the 0.6 for more/less darkness */
+    z-index: -1; /* Keeps it behind all content */
+}
+.login-welcome-section {
+    padding: 100px 20px 40px;
+}
+.welcome-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+.welcome-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-family: 'Dosis', serif;
+    font-weight: bold;
+}
+.welcome-subtext {
+    font-size: 1.2rem;
+    font-family: 'Dosis', serif;
+    font-weight: bold;
+}
+/* Gradient separator line */
+.gradient-line {
+    height: 6px;
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet, red, orange, yellow, green, blue);
+    background-size: 300% 100%;
+    animation: animateGradient 6s linear infinite;
+    opacity: 0.6;
+}
+@keyframes animateGradient {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+/* Login Form */
+.login-form-section {
+    background-color: black;
+    padding: 50px 20px;
+    position: relative;
+}
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+}
+.login-image-container {
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+    position: relative;
+}
+.login-image {
+    width: auto; /* Adjust size as you want */
+    height: auto;
+    object-fit: cover;
+}
+.login-card {
+    background-color: #111;
+    padding: 40px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+    text-align: center;
+    color: white;
+}
+.login-card h2 {
+    font-family: 'Dosis', serif;
+}
+.login-card li {
+    color: #c1c1c1;
+    font-size: 13px;
+}
+.login-header {
+    margin-bottom: 30px;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+.form-label {
+    color: #ccc;
+}
+.form-control {
+    background-color: #222;
+    border: none;
+    color: white;
+    border-radius: 5px;
+}
+.form-control:focus {
+    box-shadow: none;
+    border: 1px solid #555;
+    background-color: #222;
+    color: white;
+}
+.forgot-password {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+
+/* ***** Category Page ***** */
+/* Title with grid */
+.categories-section {
+    background-color: black;
+    padding: 80px 20px;
+    text-align: center;
+    color: white;
+}
+.section-title {
+    font-size: 3rem;
+    margin-bottom: 60px;
+    font-family: 'Dosis', serif;
+}
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.category-card {
+    position: relative;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border: 2px solid #191919;
+}
+.category-card:hover {
+    transform: scale(1.03);
+}
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+.category-name {
+    margin: 0;
+    font-size: 1.5rem;
+    transform: translateY(0);
+    transition: transform 0.6s ease;
+}
+.explore-btn {
+    display: none;
+    margin-top: 10px;
+    padding: 8px 20px;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: 'Dosis', serif;
+}
+.explore-btn:hover {
+    background-color: #ddd;
+}
+.category-card:hover .category-name {
+    transform: translateY(-20px);
+}
+.category-card:hover .explore-btn {
+    display: inline-block;
+}
+
+
+/* ***** Products ***** */
+/* Background Image */
+.products-hero {
+    height: 80vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Keeps it static */
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+/* Divider */
+.products-divider {
+    height: 6px;
+    width: 100%;
+    background: white;
+    border: none;
+    margin: 0;
+}
+/* Title */
+.products-main {
+    background-color: black;
+    padding-top: 50px;
+    text-align: center;
+    color: white;
+}
+.products-title {
+    font-size: 3rem;
+    margin: 0;
+    font-family: 'Dosis', serif;
+}
+/* Product Filter */
+.products-section {
+    background-color: black;
+    padding: 60px 20px;
+}
+.filter-card{
+    background-color: #111;
+    padding: 40px;
+    border-radius: 10px;
+    width: 100%;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+    color: white;
+    z-index: 2;
+}
+.filter-title {
+    text-align: center;
+    font-family: 'Dosis', serif;
+}
+.filter-label{
+    color: #ccc;
+}
+.product-card{
+    background-color: #111;
+    padding: 40px;
+    border-radius: 10px;
+    width: 100%;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+    color: white;
+    z-index: 2;
+}
+.product-row{
+    background-color: #191919;
+    border: 1px solid white;
+}
+.product-row img{
+    padding: 10px;
+    width: 200px;
+}
+.product-text{
+    padding-top: 10px;
+    font-family: 'Dosis', serif;
+}
+.product-text li{
+    color: #c1c1c1;
+    font-size: 0.8rem;
+}
+.product-price{
+    padding-top: 60px;
+    font-family: 'Dosis', serif;
+}
+.base{
+    background: linear-gradient(to bottom, red, orange, yellow, green, blue, indigo, violet);
+    background-size: 100% 400%;
+    animation: gradientShift 6s linear infinite;
+    padding: 2px;
+    border-radius: 10px;
+    width: 100%;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+    z-index: 1;
+}
+@keyframes gradientShift {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 0% 100%; }
+    100% { background-position: 0% 0%; }
+  }
+
+/* cart */
+/* Body */
+.cart-section {
+    background-color: black;
+    padding: 60px 20px;
+    font-family: 'Dosis', serif;
+}
+.cart-label {
+    font-size: 3rem;
+    font-weight: bold;
+}
+.cart-card {
+    background-color: #111;
+}
+.cart-img {
+    width: 80px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 5px;
+}
+.quantity-input {
+    width: 60px;
+    text-align: center;
+}
+.cart-section button {
+    font-weight: bold;
+}
+.cart-section input {
+    width: 65px;
+}
+/* ***** Order Dashboard ***** */
+.order-dashboard-section {
+    background-color: black;
+    min-height: 100vh;
+    font-family: 'Dosis', serif;
+}
+.order-card {
+    background-color: #111;
+}
+.order-card img {
+    max-height: 100px;
+    object-fit: contain;
+}
+.order-card button {
+    font-weight: bold;
+}

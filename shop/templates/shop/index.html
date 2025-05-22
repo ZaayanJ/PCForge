@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCForge - Home</title>
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static 'shop/styles/pcforge-style.css' %}">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+
+</head>
+<body class="bg-black">
+    <!-- Navbar -->
+    {% include "shop/nav.html" %}
+    
+    <!-- Landing Section -->
+    <section class="landing-section">
+        <div class="landing-text">
+            <!-- Image logo transparent -->
+            <img src="{% static 'shop/images/logo-transparent.png' %}" alt="Logo" class="animated-logo mb-3">
+            <!-- Text -->
+            <h1>YOUR PC, YOUR FORGE.</h1>
+            <p>
+                PCForge is your one-stop shop for premium PC components. 
+                From high-performance processors to powerful graphics cards, 
+                we've got everything you need to forge the perfect custom PC.
+            </p>
+            <!-- Button -->
+            <a href="{% url 'catalog' %}" class="btn btn-light text-dark mt-3" style="font-weight: bold;">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Featured Product Information -->
+    <section class="featuredproduct-information">
+        <div class="featuredproduct-wrapper">
+            <!-- Left Image -->
+            <div class="featuredproduct-image">
+                <img src="https://images.evga.com/concept/images/graphics/2020New/Banner.jpg" alt="">
+            </div>
+    
+            <!-- Right Text Content -->
+            <div class="featuredproduct-content text-end">
+                <h2>LOOK INTO OUR FEATURED PRODUCT</h2>
+                <p>
+                    NIVIDIA Ampere delivers unprecedented performance that gamers crave for 4K 
+                    resolution gaming, powered by the NVIDIA Ampere architecture. 
+                    It's built with enhanced RT Cores and Tensor Cores, new streaming multiprocessors, 
+                    and up to superfast G6X memory for an amazing gaming experience.
+                </p>
+                <button onclick="window.location.href='{% url 'catalog' %}'" class="btn btn-light text-dark" style="font-weight: bold;">Explore More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Product Animation -->
+    <section class="featuredproduct-animation position-relative">
+        <!-- Labels -->
+        <div class="labels d-none">
+            <div class="label" style="left: calc(50% - 500px); top: -200px;">
+                <div class="box">Micro-thin Heatpipes</div>
+                <div class="line"></div>
+            </div>
+            <div class="label" style="left: calc(50% - 350px); top: -160px;">
+                <div class="box">Air-Through PCB</div>
+                <div class="line"></div>
+            </div>
+            <div class="label" style="left: calc(50% - 200px); top: -200px;">
+                <div class="box">Unified Copper Block</div>
+                <div class="line"></div>
+            </div>
+            <div class="label" style="left: 45%; top: -160px;">
+                <div class="box">Through-Hole Heatsink Fins</div>
+                <div class="line"></div>
+            </div>
+            <div class="label" style="left: calc(50% + 75px); top: -200px;">
+                <div class="box">0dB Noise Motor Fan</div>
+                <div class="line"></div>
+            </div>
+            <div class="label" style="left: calc(50% + 250px); top: -160px;">
+                <div class="box">ARGB GeForce RTX™</div>
+                <div class="line"></div>
+            </div>
+            <div class="label" style="left: calc(50% + 350px); top: -200px;">
+                <div class="box">Fan Arrangement and Design</div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <!-- Images stack -->
+        <div class="image-stack" onclick="expandStack()">
+            <img src="{% static 'shop/images/graphics-card-part1.png' %}" class="stack-img layer-1">
+            <img src="{% static 'shop/images/graphics-card-part2.png' %}" class="stack-img layer-2">
+            <img src="{% static 'shop/images/graphics-card-part3.png' %}" class="stack-img layer-3">
+            <img src="{% static 'shop/images/graphics-card-part4.png' %}" class="stack-img layer-4">
+            <img src="{% static 'shop/images/graphics-card-part5.png' %}" class="stack-img layer-5">
+            <img src="{% static 'shop/images/graphics-card-part6.png' %}" class="stack-img layer-6">
+            <img src="{% static 'shop/images/graphics-card-part7.png' %}" class="stack-img layer-7">
+            
+        </div>
+    
+        <!-- Labels will appear after expansion -->
+        <div class="labels d-none">
+            <div class="label" style="top: 60%; left: 70%;">
+                <div class="line"></div>
+                <div class="box">GPU</div>
+            </div>
+            <!-- Add more labels as needed -->
+        </div>
+    </section>
+
+    <!-- Why PCForge Section -->
+    <section class="whypcforge-section">
+        <!-- Header -->
+        <div class="whypcforge-header text-center">
+            <div class="header-text">
+            <h2>WHY CHOOSE PCFORGE?</h2>
+            <p>
+                At PCForge, we understand that building a PC is more than just assembling parts - it's 
+                about creating a personal masterpiece. We carefully curate our selection of components 
+                to ensure you get the best performance, reliability, and value. Whether you're a gaming 
+                enthusiast, content creator, or professional, we have the perfect components to help you 
+                forge your ideal PC.
+            </p>
+            </div>
+        </div>
+        <!-- Image carousel -->
+        <div class="carousel-container">
+            <div class="carousel-images">
+                <img src="{% static 'shop/images/memory-label.jpg' %}" class="carousel-img">
+                <img src="{% static 'shop/images/cooler-label.jpg' %}" class="carousel-img">
+                <img src="{% static 'shop/images/motherboard-label.jpg' %}" class="carousel-img">
+                <img src="{% static 'shop/images/cpu-label.jpg' %}" class="carousel-img">
+                <img src="{% static 'shop/images/monitor-label.jpg' %}" class="carousel-img">                
+            </div>
+            <!-- Arrow buttons -->
+            <div>
+                <button class="carousel-arrow left">&#8592;</button>
+                <button class="carousel-arrow right">&#8594;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    {% include "shop/footer.html" %}
+
+
+
+
+
+    <script>
+        let expanded = false;
+    
+        function expandStack() {
+            if (expanded) return;
+            expanded = true;
+
+            const layers = document.querySelectorAll('.stack-img');
+            const middleIndex = Math.floor(layers.length / 2);
+
+            layers.forEach((img, index) => {
+                let offset = (index - middleIndex) * 140;
+                img.style.transform = `translateX(${offset}px)`;
+            });
+
+            document.querySelector('.labels').classList.remove('d-none');
+        }
+        
+    </script>
+    <script>
+        const track = document.querySelector('.carousel-track');
+        const images = document.querySelectorAll('.carousel-img');
+        const leftArrow = document.querySelector('.carousel-arrow.left');
+        const rightArrow = document.querySelector('.carousel-arrow.right');
+        let currentIndex = 0;
+    
+        function updateActiveImage(index) {
+            images.forEach((img, i) => {
+                img.classList.toggle('active', i === index);
+            });
+        }
+    
+        function scrollToImage(index) {
+            const image = images[index];
+            image.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            updateActiveImage(index);
+        }
+    
+        leftArrow.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            scrollToImage(currentIndex);
+        });
+    
+        rightArrow.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            scrollToImage(currentIndex);
+        });
+    
+        {% comment %} // Set initial active image
+        scrollToImage(currentIndex); {% endcomment %}
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+</html>
