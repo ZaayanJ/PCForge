@@ -112,7 +112,17 @@ Visit `http://127.0.0.1:8000` to access the platform.
 
 ## 📸 Screenshots
 
-> *(Add images of PC Builder, dashboards, or exploded GPU animation)*
+### 🔧 PC Builder – CPU Selection Step  
+<img width="1440" alt="CPU Selection" src="https://github.com/user-attachments/assets/4a812185-671b-408a-be34-1ed239e14e8d" />
+
+### 🛠️ Admin Dashboard – Manage Products & Employees  
+<img width="1440" alt="Admin Dashboard" src="https://github.com/user-attachments/assets/93d2c31f-1c38-4db0-aaa5-7b9143d0e84d" />
+
+### 🗂️ Product Categories – CPUs, GPUs, Motherboards & More  
+<img width="1439" alt="Product Categories" src="https://github.com/user-attachments/assets/5742c4be-ba5f-46a6-a8fe-c5717c50ee7d" />
+
+### 🏠 Home Page – Welcome to PC Forge  
+<img width="1440" alt="Home Page" src="https://github.com/user-attachments/assets/ed5bbeb1-1e22-46ea-b3bf-3f73ce4146e7" />
 
 ---
 
