@@ -48,33 +48,6 @@
 
 ## 📁 Project Structure
 
-```
-pcforge/
-├── backend/
-│   ├── manage.py
-│   ├── pcforge/                 # Django project core
-│   └── components/             # Part management and APIs
-│       ├── models.py
-│       ├── views.py
-│       ├── serializers.py
-│       └── admin.py
-├── frontend/
-│   ├── templates/
-│   │   ├── index.html          # Homepage / PC Builder
-│   │   ├── cart.html
-│   │   ├── profile.html
-│   │   ├── dashboard_admin.html
-│   │   └── dashboard_employee.html
-│   └── static/
-│       ├── css/                # Tailwind, Bootstrap
-│       └── js/                 # Cart logic, filtering, animations
-├── uploads/                    # Order-related user uploads (ignored by Git)
-├── resume-parser-env/          # Python virtual environment (ignored)
-└── README.md
-```
-
----
-
 ## 💡 How It Works
 
 1. Customers select components through the PC Builder or catalog
